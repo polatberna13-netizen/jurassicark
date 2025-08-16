@@ -66,13 +66,11 @@ router.get("/client-token", async (_req, res) => {
   }
 });
 
-// Helper to number-ify prices safely
 const toPrice = (v) => {
   const n = Number(v);
   return Number.isFinite(n) ? n : 0;
 };
 
-// Normalize incoming items from client
 function normalizeClientItems(rawItems = [], currency = "EUR") {
   if (!Array.isArray(rawItems)) return [];
   return rawItems.map((it, idx) => {
@@ -81,7 +79,6 @@ function normalizeClientItems(rawItems = [], currency = "EUR") {
     const sku = String(it?.sku ?? it?.itemId ?? "").slice(0, 127);
     let desc = String(it?.description ?? "").slice(0, 127);
 
-    // preserve High Level / extra info if provided by client payload
     const isHL = it?.isHighLevel === true || it?.highLevel === true;
     if (isHL && !/^\(High level\)/i.test(desc)) desc = desc ? `(High level) ${desc}` : "(High level)";
 
@@ -112,7 +109,6 @@ router.post("/orders", async (req, res) => {
 
     if (DEBUG) console.log("Create order request:", { clientAmount, currency, userId, itemCount: Array.isArray(items) ? items.length : 0 });
 
-    // Normalize items, split positives and negatives (discount lines)
     const normalized = normalizeClientItems(items, currency);
 
     const positiveItems = normalized.filter(i => i._numPrice >= 0);
@@ -120,10 +116,8 @@ router.post("/orders", async (req, res) => {
 
     const bundleDiscountAbs = negativeItems.reduce((s, it) => s + Math.abs(it._numPrice * it._numQty), 0);
 
-    // Compute positive total
     let positiveTotal = positiveItems.reduce((s, it) => s + (it._numPrice * it._numQty), 0);
 
-    // Add a tiny "User name" line as before (0.01) to item_total and mirror it as discount
     const uidShort = userId.length > 20 ? `${userId.slice(0, 10)}…${userId.slice(-4)}` : userId;
     const uidLineValue = 0.01;
     const uidItem = {
@@ -134,21 +128,16 @@ router.post("/orders", async (req, res) => {
       unit_amount: { currency_code: currency, value: uidLineValue.toFixed(2) }
     };
 
-    // Build final items for PayPal: all positives + the uid line (no negative items in PayPal payload)
     const itemsForPaypal = [...positiveItems.map(({ name, sku, quantity, description, unit_amount }) => ({
       name, sku, quantity, description, unit_amount
     })), uidItem];
 
     const itemTotalForPaypal = positiveTotal + uidLineValue;
 
-    // Total discount combines client's bundle discount + the uid line value
     const totalDiscount = bundleDiscountAbs + uidLineValue;
 
-    // Sanity check: PayPal requires value == item_total - discount
     const computedNet = itemTotalForPaypal - totalDiscount;
 
-    // The clientAmount should equal the net: (positives - bundleDiscountAbs)
-    // Accept small rounding differences
     if (Math.abs(computedNet - clientAmount) > 0.01) {
       if (DEBUG) {
         console.error("Amount mismatch", {
