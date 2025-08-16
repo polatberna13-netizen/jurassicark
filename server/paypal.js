@@ -1,5 +1,7 @@
+// paypal.js
 import express from "express";
 
+// Polyfill for older Node, safe even on 18+
 if (!globalThis.fetch) {
   const { default: nf } = await import("node-fetch");
   globalThis.fetch = nf;
@@ -7,15 +9,17 @@ if (!globalThis.fetch) {
 
 const router = express.Router();
 
-const BASE = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
-const CID = process.env.PAYPAL_CLIENT_ID;
+// ===== LIVE ENV ONLY =====
+const BASE   = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
+const CID    = process.env.PAYPAL_CLIENT_ID;
 const SECRET = process.env.PAYPAL_CLIENT_SECRET;
-const PUBLIC = process.env.PUBLIC_BASE_URL || "http://localhost:5173";
+const PUBLIC = process.env.PUBLIC_BASE_URL || "https://jurassicark.x10.mx";
 
 function assertEnv() {
   const missing = [];
   if (!CID) missing.push("PAYPAL_CLIENT_ID");
   if (!SECRET) missing.push("PAYPAL_CLIENT_SECRET");
+  if (!BASE) missing.push("PAYPAL_BASE_URL");
   if (missing.length) {
     const msg = `Missing env: ${missing.join(", ")}`;
     throw Object.assign(new Error(msg), { status: 500 });
@@ -27,7 +31,10 @@ async function getAccessToken() {
   const auth = Buffer.from(`${CID}:${SECRET}`).toString("base64");
   const r = await fetch(`${BASE}/v1/oauth2/token`, {
     method: "POST",
-    headers: { Authorization: `Basic ${auth}`, "Content-Type": "application/x-www-form-urlencoded" },
+    headers: {
+      Authorization: `Basic ${auth}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     body: "grant_type=client_credentials",
   });
   const j = await r.json().catch(() => ({}));
@@ -38,12 +45,27 @@ async function getAccessToken() {
   return j.access_token;
 }
 
+// Optional: serve SDK config so the client & server always match
+router.get("/sdk-config", (_req, res) => {
+  res.json({
+    clientId: CID || null,
+    currency: "EUR",
+    intent: "capture",
+    env: "live",
+  });
+});
+
+// Client token (optional for advanced flows; harmless to expose)
 router.get("/client-token", async (_req, res) => {
   try {
     const access = await getAccessToken();
     const r = await fetch(`${BASE}/v1/identity/generate-token`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${access}`, "Content-Type": "application/json", "Accept-Language": "en_GB" },
+      headers: {
+        Authorization: `Bearer ${access}`,
+        "Content-Type": "application/json",
+        "Accept-Language": "en_GB",
+      },
     });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) return res.status(r.status).json({ error: "generate-token failed", detail: j });
@@ -53,6 +75,7 @@ router.get("/client-token", async (_req, res) => {
   }
 });
 
+// Create order (no hidden UID item; no strict math)
 router.post("/orders", express.json(), async (req, res) => {
   try {
     const { amount, currency = "EUR", userId, items = [] } = req.body || {};
@@ -60,98 +83,47 @@ router.post("/orders", express.json(), async (req, res) => {
     if (!Number.isFinite(n) || n <= 0) return res.status(400).json({ error: "Invalid amount" });
     if (!userId || typeof userId !== "string") return res.status(400).json({ error: "Missing userId" });
 
-    const uidTag = String(userId);
-    const uidShort = uidTag.length > 20 ? `${uidTag.slice(0, 10)}…${uidTag.slice(-4)}` : uidTag;
-
-    const EXTRA_LABELS = { ChibiPet: "Chibi", skin: "Skin" };
-    const addHighLevelIfNeeded = (desc, isHL) => {
-      const d = String(desc || "");
-      if (!isHL) return d || "";
-      if (/^\(High level\)\s*/i.test(d)) return d;
-      return d ? `(High level) ${d}` : "(High level)";
-    };
-    const appendExtraIfNeeded = (desc, sku, extra) => {
-      const d = String(desc || "");
-      const label = EXTRA_LABELS[sku];
-      const val = String(extra || "").trim();
-      if (!label || !val) return d;
-      if (d.includes(`[${label}:`)) return d;
-      const out = `${d}${d ? " " : ""}[${label}: ${val}]`;
-      return out;
+    let purchaseUnit = {
+      reference_id: "PU-1",
+      custom_id: String(userId).slice(0, 127),
+      invoice_id: `INV-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
+      amount: { currency_code: currency, value: n.toFixed(2) },
     };
 
-    let normalizedItems = Array.isArray(items)
-      ? items.map((it, idx) => {
-          const price = Number(it?.unit_amount?.value ?? it?.price ?? 0);
-          const qty = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)));
-
-          const sku = String(it?.sku ?? it?.itemId ?? "").slice(0, 127);
-          let desc = String(it?.description ?? "").slice(0, 127);
-
-          const isHL = it?.isHighLevel === true || it?.highLevel === true;
-          desc = addHighLevelIfNeeded(desc, isHL);
-          desc = appendExtraIfNeeded(desc, sku, it?.extra ?? it?.note);
-          if (!desc) {
-            desc = sku ? `#${sku}` : `Item ${idx + 1}`;
-          }
-          desc = desc.slice(0, 127);
-
-          return {
-            name: String(it?.name ?? `Item ${idx + 1}`).slice(0, 127),
-            sku,
-            quantity: String(qty),
-            description: desc,
-            unit_amount: { currency_code: currency, value: price.toFixed(2) },
-          };
-        })
-      : [];
-
-    let itemTotal = normalizedItems.reduce((sum, it) => sum + Number(it.unit_amount.value) * Number(it.quantity), 0);
-
-    const discountValue = 0.01;
-    const uidItem = {
-      name: "User name",
-      sku: `UID:${uidShort}`,
-      quantity: "1",
-      description: `User: ${uidTag}`.slice(0, 127),
-      unit_amount: { currency_code: currency, value: discountValue.toFixed(2) },
-    };
-    normalizedItems = [uidItem, ...normalizedItems];
-    itemTotal += discountValue;
-
-    if (Math.abs(itemTotal - discountValue - n) > 0.001) {
-      return res.status(400).json({
-        error: "Amount mismatch",
-        detail: {
-          clientAmount: n.toFixed(2),
-          itemTotal: itemTotal.toFixed(2),
-          discount: discountValue.toFixed(2),
-          net: (itemTotal - discountValue).toFixed(2),
-        },
+    // If frontend sends items, include them + breakdown, but don't enforce exactness.
+    if (Array.isArray(items) && items.length > 0) {
+      const normalized = items.map((it, idx) => {
+        const price = Number(it?.unit_amount?.value ?? it?.price ?? 0);
+        const qty = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)));
+        const sku = String(it?.sku ?? it?.itemId ?? "").slice(0, 127);
+        const desc = String(it?.description ?? sku || `Item ${idx + 1}`).slice(0, 127);
+        return {
+          name: String(it?.name ?? `Item ${idx + 1}`).slice(0, 127),
+          sku,
+          quantity: String(qty),
+          description: desc,
+          unit_amount: { currency_code: currency, value: price.toFixed(2) },
+        };
       });
+      const itemTotal = normalized.reduce(
+        (sum, it) => sum + Number(it.unit_amount.value) * Number(it.quantity),
+        0
+      );
+      purchaseUnit = {
+        ...purchaseUnit,
+        amount: {
+          currency_code: currency,
+          value: n.toFixed(2),
+          breakdown: { item_total: { currency_code: currency, value: itemTotal.toFixed(2) } },
+        },
+        items: normalized,
+      };
     }
 
     const access = await getAccessToken();
-    const invoiceId = `INV-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-
     const payload = {
       intent: "CAPTURE",
-      purchase_units: [
-        {
-          reference_id: "PU-1",
-          custom_id: String(userId).slice(0, 127),
-          invoice_id: invoiceId,
-          amount: {
-            currency_code: currency,
-            value: n.toFixed(2),
-            breakdown: {
-              item_total: { currency_code: currency, value: itemTotal.toFixed(2) },
-              discount: { currency_code: currency, value: discountValue.toFixed(2) },
-            },
-          },
-          items: normalizedItems,
-        },
-      ],
+      purchase_units: [purchaseUnit],
       application_context: {
         shipping_preference: "NO_SHIPPING",
         user_action: "PAY_NOW",
@@ -167,7 +139,6 @@ router.post("/orders", express.json(), async (req, res) => {
       headers: { Authorization: `Bearer ${access}`, "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-
     const j = await r.json().catch(() => ({}));
     if (!r.ok) return res.status(r.status).json({ error: "create order failed", detail: j });
     return res.json(j);
@@ -176,6 +147,7 @@ router.post("/orders", express.json(), async (req, res) => {
   }
 });
 
+// Capture
 router.post("/orders/:id/capture", async (req, res) => {
   try {
     const access = await getAccessToken();
@@ -194,6 +166,23 @@ router.post("/orders/:id/capture", async (req, res) => {
     return res.json(j);
   } catch (e) {
     res.status(e.status || 500).json({ error: e.message || String(e), detail: e.detail });
+  }
+});
+
+// Debug (safe)
+router.get("/debug/env", (_req, res) => {
+  res.json({
+    base: BASE,
+    clientIdSuffix: CID ? CID.slice(-8) : null,
+    hasSecret: Boolean(SECRET),
+  });
+});
+router.get("/ping", async (_req, res) => {
+  try {
+    await getAccessToken();
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(e.status || 500).json({ error: e.message, detail: e.detail });
   }
 });
 
