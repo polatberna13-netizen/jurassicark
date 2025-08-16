@@ -5,13 +5,21 @@ import paypalRoutes from "./paypal.js";
 
 const app = express();
 
-app.use(cors({
-  origin: [  
-    "https://jurassicark.x10.mx",  
-    "http://localhost:5173", 
-  ],
-  methods: ["GET", "POST"],
-}));
+const allowedOrigins = [
+  "https://jurassicark.x10.mx",
+  "http://localhost:5173",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "OPTIONS"], 
+  })
+);
+
+app.options("*", cors({ origin: allowedOrigins }));
+
+app.get("/", (_req, res) => res.send("OK"));
 
 app.use("/api/paypal", paypalRoutes);
 

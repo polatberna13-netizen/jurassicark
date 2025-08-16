@@ -10,7 +10,7 @@ const router = express.Router();
 const BASE = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
 const CID = process.env.PAYPAL_CLIENT_ID;
 const SECRET = process.env.PAYPAL_CLIENT_SECRET;
-const PUBLIC = process.env.PUBLIC_BASE_URL || "http://localhost:5173";
+const PUBLIC = process.env.PUBLIC_BASE_URL || "https://jurassicark.x10.mx";
 
 function assertEnv() {
   const missing = [];
