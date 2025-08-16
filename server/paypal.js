@@ -55,7 +55,7 @@ router.get("/sdk-config", (_req, res) => {
   });
 });
 
-// Client token (optional for advanced flows; harmless to expose)
+// Client token (optional; fine to keep)
 router.get("/client-token", async (_req, res) => {
   try {
     const access = await getAccessToken();
@@ -96,7 +96,10 @@ router.post("/orders", express.json(), async (req, res) => {
         const price = Number(it?.unit_amount?.value ?? it?.price ?? 0);
         const qty = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)));
         const sku = String(it?.sku ?? it?.itemId ?? "").slice(0, 127);
-        const desc = String(it?.description ?? sku || `Item ${idx + 1}`).slice(0, 127);
+
+        // ✅ FIXED: no mixing ?? and || without parentheses
+        const desc = String(it?.description ?? (sku || `Item ${idx + 1}`)).slice(0, 127);
+
         return {
           name: String(it?.name ?? `Item ${idx + 1}`).slice(0, 127),
           sku,
@@ -105,10 +108,12 @@ router.post("/orders", express.json(), async (req, res) => {
           unit_amount: { currency_code: currency, value: price.toFixed(2) },
         };
       });
+
       const itemTotal = normalized.reduce(
         (sum, it) => sum + Number(it.unit_amount.value) * Number(it.quantity),
         0
       );
+
       purchaseUnit = {
         ...purchaseUnit,
         amount: {
