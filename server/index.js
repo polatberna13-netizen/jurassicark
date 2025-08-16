@@ -7,17 +7,17 @@ const app = express();
 
 const allowedOrigins = [
   "https://jurassicark.x10.mx",
-  "http://localhost:5173",
+  "http://localhost:5173"
 ];
 
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: ["GET", "POST", "OPTIONS"], 
+    methods: ["GET", "POST", "OPTIONS"]
   })
 );
 
-app.options("*", cors({ origin: allowedOrigins }));
+app.options("(.*)", cors({ origin: allowedOrigins }));
 
 app.get("/", (_req, res) => res.send("OK"));
 
