@@ -21,11 +21,9 @@
                     <span>High level</span>
                   </label>
 
-                  <!-- Bundle hint -->
                   <span v-if="isBundleLine(line)" class="badge bundle-badge">Bundle</span>
                 </div>
 
-                <!-- Extra inputs for specific items -->
                 <div v-if="needsExtra(line)" class="extras">
                   <input :id="`extra-${line.itemId}`" class="form-control form-control-sm extras-input"
                     :placeholder="extraPlaceholder(line)" :value="extraInfo[line.itemId] || ''"
@@ -63,7 +61,6 @@
 
           <hr class="my-3" />
 
-          <!-- Totals: show discount only at total level -->
           <div class="d-flex justify-content-between align-items-center pe-3">
             <button class="button secondary" @click="clear()">Clear cart</button>
             <div class="text-end">

@@ -1,7 +1,5 @@
-// paypal.js
 import express from "express";
 
-// Polyfill for older Node (safe on Node 18+ too)
 if (!globalThis.fetch) {
   const { default: nf } = await import("node-fetch");
   globalThis.fetch = nf;
@@ -9,11 +7,12 @@ if (!globalThis.fetch) {
 
 const router = express.Router();
 
-// ===== LIVE ENV ONLY =====
 const BASE   = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
 const CID    = process.env.PAYPAL_CLIENT_ID;
 const SECRET = process.env.PAYPAL_CLIENT_SECRET;
 const PUBLIC = process.env.PUBLIC_BASE_URL || "https://jurassicark.x10.mx";
+
+const APPEND_UID_TO_FIRST_ITEM = (process.env.APPEND_UID_TO_FIRST_ITEM || "true").toLowerCase() !== "false";
 
 function assertEnv() {
   const missing = [];
@@ -45,12 +44,10 @@ async function getAccessToken() {
   return j.access_token;
 }
 
-// Optional: serve SDK config so client & server stay in sync
 router.get("/sdk-config", (_req, res) => {
   res.json({ clientId: CID || null, currency: "EUR", intent: "capture", env: "live" });
 });
 
-// Optional: client token endpoint
 router.get("/client-token", async (_req, res) => {
   try {
     const access = await getAccessToken();
@@ -70,7 +67,6 @@ router.get("/client-token", async (_req, res) => {
   }
 });
 
-// Create order — converts negative item lines into a proper discount
 router.post("/orders", express.json(), async (req, res) => {
   try {
     const { amount, currency = "EUR", userId, items = [] } = req.body || {};
@@ -82,9 +78,16 @@ router.post("/orders", express.json(), async (req, res) => {
       return res.status(400).json({ error: "Missing userId" });
     }
 
-    // Normalize incoming items and split into positives / discount accumulator
+    const uidTagRaw = String(userId);
+    const uidShort = uidTagRaw.length > 24
+      ? `${uidTagRaw.slice(0, 12)}…${uidTagRaw.slice(-6)}`
+      : uidTagRaw;
+    const sanitize = (s) => String(s).replace(/[^\w .,\-:#[\]()]/g, "_"); 
+    const uidTag = sanitize(uidTagRaw);
+    const uidShortSafe = sanitize(uidShort);
+
     const positiveItems = [];
-    let discountTotal = 0; // positive number representing total discount
+    let discountTotal = 0; 
 
     if (Array.isArray(items)) {
       items.forEach((it, idx) => {
@@ -97,7 +100,6 @@ router.post("/orders", express.json(), async (req, res) => {
         if (!Number.isFinite(price) || qty <= 0) return;
 
         if (price < 0) {
-          // Treat negatives as a discount
           discountTotal += Math.abs(price) * qty;
         } else if (price > 0) {
           positiveItems.push({
@@ -108,16 +110,24 @@ router.post("/orders", express.json(), async (req, res) => {
             unit_amount: { currency_code: currency, value: price.toFixed(2) },
           });
         }
-        // price === 0 → drop (PayPal dislikes zero-value items)
       });
     }
 
-    // Build purchase unit with correct breakdown math
+    if (APPEND_UID_TO_FIRST_ITEM && positiveItems.length > 0) {
+      const first = positiveItems[0];
+      const suffix = ` — UID: ${uidShortSafe}`;
+      first.name = (first.name + suffix).slice(0, 127);
+    }
+
+    const invoiceBase = `INV-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+    const invoiceId = `${invoiceBase}-UID-${uidShortSafe}`.slice(0, 127);
+
     let purchaseUnit = {
       reference_id: "PU-1",
-      custom_id: String(userId).slice(0, 127),
-      invoice_id: `INV-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
-      amount: { currency_code: currency, value: clientAmount.toFixed(2) }, // may be overridden below
+      custom_id: uidTag.slice(0, 127),                      
+      invoice_id: invoiceId,                                 
+      description: `Order for user: ${uidTag}`.slice(0, 127),  
+      amount: { currency_code: currency, value: clientAmount.toFixed(2) },
     };
 
     if (positiveItems.length > 0) {
@@ -133,7 +143,6 @@ router.post("/orders", express.json(), async (req, res) => {
         breakdown.discount = { currency_code: currency, value: discountTotal.toFixed(2) };
       }
 
-      // Net is what PayPal expects amount.value to be
       const net = Math.max(0, itemTotal - discountTotal);
 
       purchaseUnit = {
@@ -146,7 +155,6 @@ router.post("/orders", express.json(), async (req, res) => {
         items: positiveItems,
       };
 
-      // Optional: warn if client sent a different total (does not fail the order)
       if (Math.abs(net - clientAmount) > 0.01) {
         console.warn("Client/server amount mismatch", {
           clientAmount: clientAmount.toFixed(2),
@@ -190,7 +198,6 @@ router.post("/orders", express.json(), async (req, res) => {
   }
 });
 
-// Capture
 router.post("/orders/:id/capture", async (req, res) => {
   try {
     const access = await getAccessToken();
@@ -215,7 +222,6 @@ router.post("/orders/:id/capture", async (req, res) => {
   }
 });
 
-// Debug (safe)
 router.get("/debug/env", (_req, res) => {
   res.json({
     base: BASE,
