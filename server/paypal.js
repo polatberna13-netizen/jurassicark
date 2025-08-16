@@ -7,12 +7,12 @@ if (!globalThis.fetch) {
 
 const router = express.Router();
 
-const BASE   = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
-const CID    = process.env.PAYPAL_CLIENT_ID;
+const BASE = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
+const CID = process.env.PAYPAL_CLIENT_ID;
 const SECRET = process.env.PAYPAL_CLIENT_SECRET;
 const PUBLIC = process.env.PUBLIC_BASE_URL || "https://jurassicark.x10.mx";
-
-const APPEND_UID_TO_FIRST_ITEM = (process.env.APPEND_UID_TO_FIRST_ITEM || "true").toLowerCase() !== "false";
+const SHOW_UID_LINE_ITEM =
+  (process.env.SHOW_UID_LINE_ITEM || "true").toLowerCase() !== "false";
 
 function assertEnv() {
   const missing = [];
@@ -38,14 +38,23 @@ async function getAccessToken() {
   });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) {
-    const msg = j?.error_description || j?.error || `${r.status} ${r.statusText}`;
-    throw Object.assign(new Error(`PayPal token error: ${msg}`), { status: r.status, detail: j });
+    const msg =
+      j?.error_description || j?.error || `${r.status} ${r.statusText}`;
+    throw Object.assign(new Error(`PayPal token error: ${msg}`), {
+      status: r.status,
+      detail: j,
+    });
   }
   return j.access_token;
 }
 
 router.get("/sdk-config", (_req, res) => {
-  res.json({ clientId: CID || null, currency: "EUR", intent: "capture", env: "live" });
+  res.json({
+    clientId: CID || null,
+    currency: "EUR",
+    intent: "capture",
+    env: "live",
+  });
 });
 
 router.get("/client-token", async (_req, res) => {
@@ -60,10 +69,15 @@ router.get("/client-token", async (_req, res) => {
       },
     });
     const j = await r.json().catch(() => ({}));
-    if (!r.ok) return res.status(r.status).json({ error: "generate-token failed", detail: j });
+    if (!r.ok)
+      return res
+        .status(r.status)
+        .json({ error: "generate-token failed", detail: j });
     res.json({ client_token: j.client_token });
   } catch (e) {
-    res.status(e.status || 500).json({ error: e.message || String(e), detail: e.detail });
+    res
+      .status(e.status || 500)
+      .json({ error: e.message || String(e), detail: e.detail });
   }
 });
 
@@ -71,34 +85,36 @@ router.post("/orders", express.json(), async (req, res) => {
   try {
     const { amount, currency = "EUR", userId, items = [] } = req.body || {};
     const clientAmount = Number(amount);
-    if (!Number.isFinite(clientAmount) || clientAmount <= 0) {
+    if (!Number.isFinite(clientAmount) || clientAmount <= 0)
       return res.status(400).json({ error: "Invalid amount" });
-    }
-    if (!userId || typeof userId !== "string") {
+    if (!userId || typeof userId !== "string")
       return res.status(400).json({ error: "Missing userId" });
-    }
 
-    const uidTagRaw = String(userId);
-    const uidShort = uidTagRaw.length > 24
-      ? `${uidTagRaw.slice(0, 12)}…${uidTagRaw.slice(-6)}`
-      : uidTagRaw;
-    const sanitize = (s) => String(s).replace(/[^\w .,\-:#[\]()]/g, "_"); 
-    const uidTag = sanitize(uidTagRaw);
+    const uidRaw = String(userId);
+    const uidShort =
+      uidRaw.length > 24
+        ? `${uidRaw.slice(0, 12)}…${uidRaw.slice(-6)}`
+        : uidRaw;
+    const sanitize = (s) => String(s).replace(/[^\w .,\-:#[\]()]/g, "_");
+    const uidSafe = sanitize(uidRaw);
     const uidShortSafe = sanitize(uidShort);
 
     const positiveItems = [];
-    let discountTotal = 0; 
+    let discountTotal = 0;
 
     if (Array.isArray(items)) {
       items.forEach((it, idx) => {
-        const qty = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)));
+        const qty = Math.max(
+          1,
+          Math.floor(Number(it?.quantity ?? it?.qty ?? 1))
+        );
         const price = Number(it?.unit_amount?.value ?? it?.price ?? 0);
         const sku = String(it?.sku ?? it?.itemId ?? "").slice(0, 127);
-        const desc = String(it?.description ?? (sku || `Item ${idx + 1}`)).slice(0, 127);
+        const desc = String(
+          it?.description ?? (sku || `Item ${idx + 1}`)
+        ).slice(0, 127);
         const name = String(it?.name ?? `Item ${idx + 1}`).slice(0, 127);
-
         if (!Number.isFinite(price) || qty <= 0) return;
-
         if (price < 0) {
           discountTotal += Math.abs(price) * qty;
         } else if (price > 0) {
@@ -113,20 +129,27 @@ router.post("/orders", express.json(), async (req, res) => {
       });
     }
 
-    if (APPEND_UID_TO_FIRST_ITEM && positiveItems.length > 0) {
-      const first = positiveItems[0];
-      const suffix = ` — UID: ${uidShortSafe}`;
-      first.name = (first.name + suffix).slice(0, 127);
+    if (SHOW_UID_LINE_ITEM) {
+      positiveItems.unshift({
+        name: `User: ${uidShortSafe}`,
+        sku: `UID:${uidShortSafe}`,
+        quantity: "1",
+        description: `Order user: ${uidSafe}`.slice(0, 127),
+        unit_amount: { currency_code: currency, value: "0.01" },
+      });
+      discountTotal += 0.01;
     }
 
-    const invoiceBase = `INV-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+    const invoiceBase = `INV-${Date.now()}-${Math.floor(
+      Math.random() * 10000
+    )}`;
     const invoiceId = `${invoiceBase}-UID-${uidShortSafe}`.slice(0, 127);
 
     let purchaseUnit = {
       reference_id: "PU-1",
-      custom_id: uidTag.slice(0, 127),                      
-      invoice_id: invoiceId,                                 
-      description: `Order for user: ${uidTag}`.slice(0, 127),  
+      custom_id: uidSafe.slice(0, 127),
+      invoice_id: invoiceId,
+      description: `Order for user: ${uidSafe}`.slice(0, 127),
       amount: { currency_code: currency, value: clientAmount.toFixed(2) },
     };
 
@@ -140,7 +163,10 @@ router.post("/orders", express.json(), async (req, res) => {
         item_total: { currency_code: currency, value: itemTotal.toFixed(2) },
       };
       if (discountTotal > 0) {
-        breakdown.discount = { currency_code: currency, value: discountTotal.toFixed(2) };
+        breakdown.discount = {
+          currency_code: currency,
+          value: discountTotal.toFixed(2),
+        };
       }
 
       const net = Math.max(0, itemTotal - discountTotal);
@@ -190,27 +216,34 @@ router.post("/orders", express.json(), async (req, res) => {
     const j = await r.json().catch(() => ({}));
     if (!r.ok) {
       console.error("PayPal create order failed:", JSON.stringify(j));
-      return res.status(r.status).json({ error: "create order failed", detail: j });
+      return res
+        .status(r.status)
+        .json({ error: "create order failed", detail: j });
     }
     return res.json(j);
   } catch (e) {
-    res.status(e.status || 500).json({ error: e.message || String(e), detail: e.detail });
+    res
+      .status(e.status || 500)
+      .json({ error: e.message || String(e), detail: e.detail });
   }
 });
 
 router.post("/orders/:id/capture", async (req, res) => {
   try {
     const access = await getAccessToken();
-    const r = await fetch(`${BASE}/v2/checkout/orders/${req.params.id}/capture`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${access}`,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "PayPal-Request-Id": `${req.params.id}-${Date.now()}`,
-      },
-      body: "{}",
-    });
+    const r = await fetch(
+      `${BASE}/v2/checkout/orders/${req.params.id}/capture`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${access}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "PayPal-Request-Id": `${req.params.id}-${Date.now()}`,
+        },
+        body: "{}",
+      }
+    );
     const j = await r.json().catch(() => ({}));
     if (!r.ok) {
       console.error("PayPal capture failed:", JSON.stringify(j));
@@ -218,7 +251,9 @@ router.post("/orders/:id/capture", async (req, res) => {
     }
     return res.json(j);
   } catch (e) {
-    res.status(e.status || 500).json({ error: e.message || String(e), detail: e.detail });
+    res
+      .status(e.status || 500)
+      .json({ error: e.message || String(e), detail: e.detail });
   }
 });
 
