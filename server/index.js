@@ -12,14 +12,23 @@ const allowedOrigins = [
 
 const corsOpts = {
   origin: allowedOrigins,
-  methods: ["GET", "POST", "OPTIONS"]
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 };
 
+// Parse JSON globally (harmless even if route also uses express.json())
+app.use(express.json());
+
+// CORS for all requests
 app.use(cors(corsOpts));
+
+// Express 5 compatible catch-all for preflight
 app.options(/.*/, cors(corsOpts));
 
+// Tiny health check
 app.get("/", (_req, res) => res.send("OK"));
 
+// PayPal API routes
 app.use("/api/paypal", paypalRoutes);
 
 const PORT = process.env.PORT || 3000;
