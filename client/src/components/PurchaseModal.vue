@@ -71,17 +71,21 @@
                 <div class="small text-muted mt-1">
                   Discount
                   <span class="ms-1 badge bg-success-subtle text-success border border-success"
-                    style="font-size:.75rem">Bundle discount</span>
+                    style="font-size:.75rem">
+                    Bundle discount
+                  </span>
                 </div>
                 <div>− € {{ discountAmount.toFixed(2) }}</div>
               </template>
 
               <div class="fw-bold fs-5 mt-1">Total € {{ adjustedTotal }}</div>
+              <div v-if="belowMin" class="small text-warning mt-1">Minimum order total is €{{ MIN_TOTAL_EUR.toFixed(2)
+                }}.</div>
             </div>
           </div>
 
           <div class="d-flex justify-content-end mt-3 pe-3">
-            <button class="button" @click="checkout" :disabled="pp.loading || !hasItems || !userId">
+            <button class="button" @click="checkout" :disabled="pp.loading || !hasItems || !userId || belowMin">
               {{ pp.loading ? "Opening PayPal..." : "Checkout" }}
             </button>
           </div>
@@ -110,6 +114,7 @@ import { useCart } from "../stores/useCart"
 
 const userId = ref("")
 const API_BASE = import.meta.env.VITE_API_BASE || (import.meta.env.DEV ? "http://localhost:3000" : "")
+const MIN_TOTAL_EUR = Number(import.meta.env.VITE_MIN_ORDER_EUR ?? 2)
 
 const props = defineProps({ open: { type: Boolean, default: false } })
 const emit = defineEmits(["update:open", "close"])
@@ -138,15 +143,12 @@ const highLevel = reactive({})
 const isDino = (line) => DINO_TYPES.includes(line.type)
 const setHighLevel = (id, val) => { highLevel[id] = !!val }
 
-const isBundleLine = (line) =>
-  line?.type === 'Bundle' || !!line?.bundle || line?.itemId === 'starter-kit'
+const isBundleLine = (line) => line?.type === "Bundle" || !!line?.bundle || line?.itemId === "starter-kit"
 
 const getDiscountRate = (line) => {
   let rate = Number(line?.bundle?.discountRate)
   if (!Number.isFinite(rate)) rate = Number(line?.discountRate)
-  if (!Number.isFinite(rate) && (line?.itemId === 'starter-kit' || line?.type === 'Bundle')) {
-    rate = 0.20
-  }
+  if (!Number.isFinite(rate) && (line?.itemId === "starter-kit" || line?.type === "Bundle")) rate = 0.20
   return (Number.isFinite(rate) && rate > 0 && rate <= 1) ? rate : 0
 }
 
@@ -166,15 +168,10 @@ const lineDiscount = (line) => {
   return unitPrice(line) * line.qty * rate
 }
 
-const subtotal = computed(() =>
-  cart.value.reduce((s, line) => s + lineTotal(line), 0)
-)
-const discountAmount = computed(() =>
-  cart.value.reduce((s, line) => s + lineDiscount(line), 0)
-)
-const adjustedTotal = computed(() =>
-  round2(subtotal.value - discountAmount.value).toFixed(2)
-)
+const subtotal = computed(() => cart.value.reduce((s, line) => s + lineTotal(line), 0))
+const discountAmount = computed(() => cart.value.reduce((s, line) => s + lineDiscount(line), 0))
+const adjustedTotal = computed(() => round2(subtotal.value - discountAmount.value).toFixed(2))
+const belowMin = computed(() => Number(adjustedTotal.value) + 1e-9 < MIN_TOTAL_EUR)
 
 const EXTRA_IDS = { ChibiPet: "Chibi", skin: "Skin" }
 const extraInfo = reactive({})
@@ -267,6 +264,7 @@ async function checkout() {
   try {
     pp.error = ""; pp.success = ""; pp.loading = true
     if (!hasItems.value) throw new Error("Your cart is empty")
+    if (belowMin.value) throw new Error(`Minimum order total is €${MIN_TOTAL_EUR.toFixed(2)}`)
     await loadSdkIfNeeded()
     pp.show = true
     await nextTick()
