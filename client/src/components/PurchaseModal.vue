@@ -247,7 +247,7 @@ async function renderButtons() {
       }
       pp.show = false
       clear()
-      pp.success = "Payment successful! Your order has been placed."
+      pp.success = "Payment successful. Your order has been confirmed and will be delivered within 24 hours. If you experience any issues, please contact us via Discord."
       setTimeout(() => { if (pp.success) pp.success = ""; close() }, 5000)
     },
     onCancel: () => {
@@ -257,7 +257,7 @@ async function renderButtons() {
     },
     onError: (err) => {
       pp.show = false
-      pp.error = err?.message || "Something went wrong. Please try again."
+      pp.error = err?.message || "Something went wrong. Please try again. If you experience any issues, please contact us via Discord."
       setTimeout(() => { if (pp.error) pp.error = "" }, 5000)
     },
     style: { shape: "rect", label: "pay", layout: "vertical" }

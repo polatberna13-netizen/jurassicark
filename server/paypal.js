@@ -1,7 +1,5 @@
-// paypal.js
 import express from "express";
 
-// Polyfill for older Node, safe even on 18+
 if (!globalThis.fetch) {
   const { default: nf } = await import("node-fetch");
   globalThis.fetch = nf;
@@ -9,7 +7,6 @@ if (!globalThis.fetch) {
 
 const router = express.Router();
 
-// ===== LIVE ENV ONLY =====
 const BASE   = process.env.PAYPAL_BASE_URL || "https://api-m.paypal.com";
 const CID    = process.env.PAYPAL_CLIENT_ID;
 const SECRET = process.env.PAYPAL_CLIENT_SECRET;
@@ -45,7 +42,6 @@ async function getAccessToken() {
   return j.access_token;
 }
 
-// Optional: serve SDK config so the client & server always match
 router.get("/sdk-config", (_req, res) => {
   res.json({
     clientId: CID || null,
@@ -55,7 +51,6 @@ router.get("/sdk-config", (_req, res) => {
   });
 });
 
-// Client token (optional; fine to keep)
 router.get("/client-token", async (_req, res) => {
   try {
     const access = await getAccessToken();
@@ -75,7 +70,6 @@ router.get("/client-token", async (_req, res) => {
   }
 });
 
-// Create order (no hidden UID item; no strict math)
 router.post("/orders", express.json(), async (req, res) => {
   try {
     const { amount, currency = "EUR", userId, items = [] } = req.body || {};
@@ -90,14 +84,12 @@ router.post("/orders", express.json(), async (req, res) => {
       amount: { currency_code: currency, value: n.toFixed(2) },
     };
 
-    // If frontend sends items, include them + breakdown, but don't enforce exactness.
     if (Array.isArray(items) && items.length > 0) {
       const normalized = items.map((it, idx) => {
         const price = Number(it?.unit_amount?.value ?? it?.price ?? 0);
         const qty = Math.max(1, Math.floor(Number(it?.quantity ?? it?.qty ?? 1)));
         const sku = String(it?.sku ?? it?.itemId ?? "").slice(0, 127);
 
-        // ✅ FIXED: no mixing ?? and || without parentheses
         const desc = String(it?.description ?? (sku || `Item ${idx + 1}`)).slice(0, 127);
 
         return {
@@ -152,7 +144,6 @@ router.post("/orders", express.json(), async (req, res) => {
   }
 });
 
-// Capture
 router.post("/orders/:id/capture", async (req, res) => {
   try {
     const access = await getAccessToken();
@@ -174,7 +165,6 @@ router.post("/orders/:id/capture", async (req, res) => {
   }
 });
 
-// Debug (safe)
 router.get("/debug/env", (_req, res) => {
   res.json({
     base: BASE,
