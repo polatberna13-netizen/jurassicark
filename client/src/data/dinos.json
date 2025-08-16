@@ -1,0 +1,236 @@
+[
+  {
+    "name": "Argentavis",
+    "image": "/images/argentavis.png",
+    "description": "Large, strong flyer capable of carrying heavy loads and medium creatures.",
+    "id": "Argent_Character_BP_C",
+    "price": "0.1",
+    "maxLevel": false,
+    "type": "Flyer"
+  },
+  {
+    "name": "Daeodon",
+    "image": "/images/daeodon.png",
+    "description": "Aggressive scavenger that gains health and speed when consuming corpses.",
+    "id": "Daeodon_Character_BP_C",
+    "price": "0.5",
+    "maxLevel": false,
+    "type": "Mammal Predator"
+  },
+  {
+    "name": "Fire Wyvern",
+    "image": "/images/wyvern.png",
+    "description": "Balanced wrath of flame; excels at area damage and has fire resistance.",
+    "id": "Ragnarok_Wyvern_Override_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Wyvern"
+  },
+  {
+    "name": "Giganotosaurus",
+    "image": "/images/giganotosaurus.png",
+    "description": "Massive carnivore with colossal damage and reach; among the strongest land predators.",
+    "id": "Gigant_Character_BP_C",
+    "price": "1",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Griffin",
+    "image": "/images/griffin.png",
+    "description": "Aerial predator with powerful dive attacks and aerial agility.",
+    "id": "Griffin_Character_BP_C",
+    "price": "2.5",
+    "maxLevel": false,
+    "type": "Flyer"
+  },
+  {
+    "name": "Ice Wyvern",
+    "image": "/images/wyvern.png",
+    "description": "Breathes a freezing blast that slows or freezes targets; ideal for crowd control.",
+    "id": "Ragnarok_Wyvern_Override_Ice_C",
+    "price": "4",
+    "maxLevel": false,
+    "type": "Wyvern"
+  },
+  {
+    "name": "Lightning Wyvern",
+    "image": "/images/wyvern.png",
+    "description": "Wyvern variant that unleashes a lightning beam whose damage scales with melee; high burst but heavy stamina drain.",
+    "id": "Wyvern_Character_BP_Lightning_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Wyvern"
+  },
+  {
+    "name": "Mantis",
+    "image": "/images/mantis.png",
+    "description": "Giant insect with grappling claws, toxic ranged spit, and mounted weapon capability.",
+    "id": "Mantis_Character_BP_C",
+    "price": "1",
+    "maxLevel": false,
+    "type": "Insect"
+  },
+  {
+    "name": "Mosasaurus",
+    "image": "/images/mosasaurus.png",
+    "description": "Giant marine predator with crushing jaws—dominates underwater combat.",
+    "id": "Mosa_Character_BP_C",
+    "price": "1",
+    "maxLevel": false,
+    "type": "Aquatic"
+  },
+  {
+    "name": "Otter",
+    "image": "/images/otter.png",
+    "description": "Cute aquatic creature that forages underwater and can produce a special resource.",
+    "id": "Otter_Character_BP_C",
+    "price": "1",
+    "maxLevel": false,
+    "type": "Aquatic"
+  },
+  {
+    "name": "Ovis",
+    "image": "/images/ovis.png",
+    "description": "Docile sheep-like creature useful for wool gathering and festive events.",
+    "id": "Sheep_Character_BP_C",
+    "price": "0.1",
+    "maxLevel": false,
+    "type": "Herbivore"
+  },
+  {
+    "name": "Phoenix",
+    "image": "/images/phoenix.png",
+    "description": "A mythical bird of fire and rebirth, the Phoenix is said to burst into flames upon death, only to rise anew from its own ashes. Known for its radiant plumage, searing heat, and unmatched grace in flight, it is a symbol of immortality and renewal in countless legends.",
+    "id": "Phoenix",
+    "price": "5",
+    "maxLevel": false,
+    "type": "Fantasy Creature"
+  },
+  {
+    "name": "Poison Wyvern",
+    "image": "/images/wyvern.png",
+    "description": "Shoots long-range toxic projectiles that ignore armor and deal damage over time.",
+    "id": "Wyvern_Character_BP_Poison_C",
+    "price": "2.5",
+    "maxLevel": false,
+    "type": "Wyvern"
+  },
+  {
+    "name": "Purlovia",
+    "image": "/images/purlovia.png",
+    "description": "Burrowing scorpion-like predator that ambushes prey from below.",
+    "id": "Purlovia_Character_BP_C",
+    "price": "0.2",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Quetzalcoatlus",
+    "image": "/images/quetzalcoatlus.png",
+    "description": "The largest flying creature; prized as a mobile air-base and massive transporter when tamed.",
+    "id": "Quetz_Character_BP_C",
+    "price": "0.2",
+    "maxLevel": false,
+    "type": "Flyer"
+  },
+  {
+    "name": "Raptor",
+    "image": "/images/raptor.png",
+    "description": "Fast and agile pack hunter; excels at hit-and-run attacks.",
+    "id": "Raptor_Character_BP_C",
+    "price": "0.05",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Rex",
+    "image": "/images/rex.png",
+    "description": "The classic apex predator—enormous health, raw melee power, and a fearsome presence in combat.",
+    "id": "Rex_Character_BP_C",
+    "price": "0.5",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Rock Drake",
+    "image": "/images/rock-drake.png",
+    "description": "Stealthy flyer that can cling to walls and glide—ideal for infiltration and mobility.",
+    "id": "RockDrake_Character_BP_C",
+    "price": "7.5",
+    "maxLevel": false,
+    "type": "Flyer"
+  },
+  {
+    "name": "Rock Elemental",
+    "image": "/images/rock-elemental.png",
+    "description": "A golem disguised as a boulder; harvests stone and throws it—valuable for siege tactics.",
+    "id": "RockGolem_Character_BP_C",
+    "price": "5",
+    "maxLevel": false,
+    "type": "Fantasy Creature"
+  },
+  {
+    "name": "Snow Owl",
+    "image": "/images/snow-owl.png",
+    "description": "A nocturnal predator that can reduce target’s torpor and has a freezing breath.",
+    "id": "Owl_Character_BP_C",
+    "price": "7.5",
+    "maxLevel": false,
+    "type": "Flyer"
+  },
+  {
+    "name": "Therizinosaur",
+    "image": "/images/therizinosaur.png",
+    "description": "Versatile bipedal beast capable of harvesting resources and dealing damage with scythes.",
+    "id": "Therizino_Character_BP_C",
+    "price": "0.5",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Thylacoleo",
+    "image": "/images/thylacoleo.png",
+    "description": "Ambush predator with strong pounce and grappling ability; excels in quick strikes.",
+    "id": "Thylacoleo_Character_BP_C",
+    "price": "0.2",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Triceratops",
+    "image": "/images/triceratops.png",
+    "description": "Heavy-horned herbivore with powerful charge attacks and great stamina.",
+    "id": "Trike_Character_BP_C",
+    "price": "0.05",
+    "maxLevel": false,
+    "type": "Herbivore"
+  },
+  {
+    "name": "Troodon",
+    "image": "/images/troodon.png",
+    "description": "Small, pack-hunting raptor with high intelligence and torpor-based attacks.",
+    "id": "Troodon_Character_BP_C",
+    "price": "0.1",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Unicorn",
+    "image": "/images/unicorn.png",
+    "description": "A horse-like, magical creature capable of granting spectral or healing effects to riders.",
+    "id": "Equus_Character_BP_Unicorn_C",
+    "price": "5",
+    "maxLevel": false,
+    "type": "Fantasy Creature"
+  },
+  {
+    "name": "Wyvern",
+    "image": "/images/wyvern.png",
+    "description": "A massive dragon-like reptile with elemental breath and the ability to carry riders; must be hatched from an egg and raised.",
+    "id": "Wyvern_Character_BP_Base_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Wyvern"
+  }
+]

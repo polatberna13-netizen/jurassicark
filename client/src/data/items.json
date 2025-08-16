@@ -1,0 +1,452 @@
+[
+  {
+    "name": "Allosaurus Brain",
+    "image": "/images/allosaurus-brain.png",
+    "description": "Brain harvested from Allosaurus; part of boss offering materials.",
+    "id": "AllosaurusBrain",
+    "className": "PrimalItemResource_AllosaurusBrain_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Argentavis Talon",
+    "image": "/images/argentavis-talon.png",
+    "description": "Crafted resource from harvesting an Argentavis; used in boss offerings.",
+    "id": "ArgentavisTalon",
+    "className": "PrimalItemResource_ArgentavisTalon_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Basilosaurus Blubber",
+    "image": "/images/basilosaurus-blubber.png",
+    "description": "Oil-rich blubber from Basilosaurus; high-tier tribute resource.",
+    "id": "BasilosaurusBlubber",
+    "className": "PrimalItemResource_BasilosaurusBlubber_C",
+    "type": "Artifact",
+    "price": "0.15"
+  },
+  {
+    "name": "Black Pearl",
+    "image": "/images/black-pearl.png",
+    "description": "A rare resource used in high-end crafting recipes, particularly for Tek items.",
+    "id": "BlackPearl",
+    "className": "PrimalItemResource_BlackPearl_C",
+    "type": "Resource",
+    "price": "0.10"
+  },
+  {
+    "name": "Chibi",
+    "image": "/images/chibi.png",
+    "description": "Cosmetic pet that follows players around. Can boost max survivor level when leveled.",
+    "id": "ChibiPet",
+    "className": "PrimalItemSkin_ChibiDino_Generic_C",
+    "type": "Cosmetic",
+    "price": "2"
+  },
+  {
+    "name": "Electrical Generator",
+    "image": "/images/electrical-generator.png",
+    "description": "Converts fuel into electricity to power nearby structures.",
+    "id": "ElectricalGenerator",
+    "className": "PrimalItemStructure_ElectricalGenerator_C",
+    "type": "Structure",
+    "price": "0.3"
+  },
+  {
+    "name": "Electronics",
+    "image": "/images/electronics.png",
+    "description": "Crafted from silica pearls and metal ingots. Required in advanced electrical crafting.",
+    "id": "Electronics",
+    "className": "PrimalItemResource_Electronics_C",
+    "type": "Resource",
+    "price": "0.01"
+  },
+  {
+    "name": "Extraordinary Kibble",
+    "image": "/images/extraordinary-kibble.png",
+    "description": "Top-tier kibble used for taming the most advanced and choosy creatures.",
+    "id": "ExtraordinaryKibble",
+    "className": "PrimalItemConsumable_Kibble_Base_XLarge_C",
+    "type": "Consumable",
+    "price": "0.2"
+  },
+  {
+    "name": "Fertilizer",
+    "image": "/images/fertilizer.png",
+    "description": "High-quality fertilizer made in a compost bin or dung beetle. Used to grow crops in crop plots.",
+    "id": "Fertilizer",
+    "className": "PrimalItemConsumable_Fertilizer_Compost_C",
+    "type": "Resource",
+    "price": "0.01"
+  },
+  {
+    "name": "Gasoline",
+    "image": "/images/gasoline.png",
+    "description": "Crafted from oil and hide in a forge. Used to fuel electrical structures and vehicles.",
+    "id": "Gasoline",
+    "className": "PrimalItemResource_Gasoline_C",
+    "type": "Resource",
+    "price": "0.01"
+  },
+  {
+    "name": "Giganotosaurus Heart",
+    "image": "/images/giganotosaurus-heart.png",
+    "description": "Heart from Giganotosaurus; used in end-game boss tributes.",
+    "id": "GiganotosaurusHeart",
+    "className": "PrimalItemResource_GiganotosaurusHeart_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Industrial Cooker",
+    "image": "/images/industrial-cooker.png",
+    "description": "An upgraded cooking pot with faster cooking speed and more inventory slots.",
+    "id": "IndustrialCooker",
+    "className": "PrimalItemStructure_IndustrialCookingPot_C",
+    "type": "Structure",
+    "price": "7"
+  },
+  {
+    "name": "Industrial Forge",
+    "image": "/images/industrial-forge.png",
+    "description": "High-capacity forge for smelting metal and other resources faster than the primitive forge.",
+    "id": "IndustrialForge",
+    "className": "PrimalItemStructure_IndustrialForge_C",
+    "type": "Structure",
+    "price": "10"
+  },
+  {
+    "name": "Industrial Grill",
+    "image": "/images/industrial-grill.png",
+    "description": "A refined cooking station that cooks food and preserves it longer with fuel and ingredients.",
+    "id": "IndustrialGrill",
+    "className": "PrimalItemStructure_IndustrialGrill_C",
+    "type": "Structure",
+    "price": "2"
+  },
+  {
+    "name": "Industrial Grinder",
+    "image": "/images/industrial-grinder.png",
+    "description": "Mechanical grinder that converts corpses and items into useful resources.",
+    "id": "IndustrialGrinder",
+    "className": "PrimalItemStructure_IndustrialGrinder_C",
+    "type": "Structure",
+    "price": "15"
+  },
+  {
+    "name": "Large Elevator Platform",
+    "image": "/images/large-elevator-platform.png",
+    "description": "A large mechanical platform that allows vertical transport of structures and creatures.",
+    "id": "LargeElevatorPlatform",
+    "className": "PrimalItemStructure_LargeElevatorPlatform_C",
+    "type": "Structure",
+    "price": "4"
+  },
+  {
+    "name": "Loadout Mannequin",
+    "image": "/images/loadout-mannequin.png",
+    "description": "Allows players to save and equip gear loadouts instantly.",
+    "id": "LoadoutMannequin",
+    "className": "PrimalItemStructure_LoadoutMannequin_C",
+    "type": "Structure",
+    "price": "7.5"
+  },
+  {
+    "name": "Medical Brew",
+    "image": "/images/medical-brew.png",
+    "description": "Instant healing tonic that restores health and cures bleeding.",
+    "id": "MedicalBrew",
+    "className": "PrimalItemConsumable_MedicalBrew_C",
+    "type": "Consumable",
+    "price": "0.02"
+  },
+  {
+    "name": "Megalania Toxin",
+    "image": "/images/megalania-toxin.png",
+    "description": "Toxic gland harvested from a Megalania; used in boss offerings.",
+    "id": "MegalaniaToxin",
+    "className": "PrimalItemResource_MegalaniaVenom_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Megalodon Tooth",
+    "image": "/images/megalodon-tooth.png",
+    "description": "Rare tooth from a Megalodon; used for advanced boss tributes.",
+    "id": "MegalodonTooth",
+    "className": "PrimalItemResource_MegalodonTooth_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Metal Ingot",
+    "image": "/images/metal-ingot.png",
+    "description": "Created by refining metal ore in a forge. Used in many mid- to late-game crafting recipes.",
+    "id": "MetalIngot",
+    "className": "PrimalItemResource_MetalIngot_C",
+    "type": "Resource",
+    "price": "0.01"
+  },
+  {
+    "name": "Metal Tree Platform",
+    "image": "/images/metal-tree-platform.png",
+    "description": "Robust tree platform constructed from metal for advanced elevated bases.",
+    "id": "MetalTreePlatform",
+    "className": "PrimalItemStructure_MetalTreePlatform_C",
+    "type": "Structure",
+    "price": "3"
+  },
+  {
+    "name": "Mindwipe Tonic",
+    "image": "/images/mindwipe-tonic.png",
+    "description": "Resets all engram points and stats. Allows complete redistribution of a survivor’s build.",
+    "id": "MindwipeTonic",
+    "className": "PrimalItemConsumable_RespecSoup_C",
+    "type": "Consumable",
+    "price": "2"
+  },
+  {
+    "name": "Motorboat",
+    "image": "/images/motorboat.png",
+    "description": "A gasoline-powered watercraft capable of supporting structures and offering fast aquatic travel.",
+    "id": "Motorboat",
+    "className": "PrimalItemMotorboat_C",
+    "type": "Vehicle",
+    "price": "5"
+  },
+  {
+    "name": "Polymer",
+    "image": "/images/polymer.png",
+    "description": "A synthetic material used in advanced crafting recipes like weapons and armor.",
+    "id": "Polymer",
+    "className": "PrimalItemResource_Polymer_C",
+    "type": "Resource",
+    "price": "0.01"
+  },
+  {
+    "name": "Pump-Action Shotgun",
+    "image": "/images/pump-action-shotgun.png",
+    "description": "A powerful close-range firearm with slow pump-action fire rate.",
+    "id": "PumpActionShotgun",
+    "className": "PrimalItem_WeaponPumpShotgun_C",
+    "type": "Weapon",
+    "price": "1"
+  },
+  {
+    "name": "Riot Boots",
+    "image": "/images/riot-boots.png",
+    "description": "Armor boots offering strong protection for the feet in combat.",
+    "id": "RiotBoots",
+    "className": "PrimalItemArmor_RiotBoots_C",
+    "type": "Armor",
+    "price": "0.2"
+  },
+  {
+    "name": "Riot Chestpiece",
+    "image": "/images/riot-chestpiece.png",
+    "description": "Durable riot armor chestplate with excellent damage resistance.",
+    "id": "RiotChestpiece",
+    "className": "PrimalItemArmor_RiotShirt_C",
+    "type": "Armor",
+    "price": "0.5"
+  },
+  {
+    "name": "Riot Gauntlets",
+    "image": "/images/riot-gauntlets.png",
+    "description": "Protective riot gloves that reduce melee damage to the hands.",
+    "id": "RiotGauntlets",
+    "className": "PrimalItemArmor_RiotGloves_C",
+    "type": "Armor",
+    "price": "0.2"
+  },
+  {
+    "name": "Riot Helmet",
+    "image": "/images/riot-helmet.png",
+    "description": "Enclosed riot helmet providing solid head protection and visor.",
+    "id": "RiotHelmet",
+    "className": "PrimalItemArmor_RiotHelmet_C",
+    "type": "Armor",
+    "price": "0.3"
+  },
+  {
+    "name": "Riot Leggings",
+    "image": "/images/riot-leggings.png",
+    "description": "Heavy armor leggings that provide high protection against damage.",
+    "id": "RiotLeggings",
+    "className": "PrimalItemArmor_RiotPants_C",
+    "type": "Armor",
+    "price": "0.3"
+  },
+  {
+    "name": "Rock Elemental Saddle",
+    "image": "/images/rock-golem-saddle.png",
+    "description": "A specialized saddle crafted for riding and controlling Rock Elementals. Designed with reinforced materials to handle the immense weight and power of the creature, providing both stability and protection to the rider.",
+    "id": "RockGolemSaddle",
+    "className": "PrimalItemArmor_RockGolemSaddle_C",
+    "type": "Saddle",
+    "price": "0.3"
+  },
+  {
+    "name": "Rock Golem Saddle",
+    "image": "/images/rock-golem-saddle.png",
+    "description": "A durable saddle built to fit the massive frame of a Rock Golem, allowing survivors to ride and command these formidable stone guardians in battle or for heavy labor.",
+    "id": "RockGolemSaddle",
+    "className": "PrimalItemArmor_RockGolemSaddle_C",
+    "type": "Saddle",
+    "price": "0.5"
+  },
+  {
+    "name": "Sarcosuchus Skin",
+    "image": "/images/sarcosuchus-skin.png",
+    "description": "Tough skin from Sarcosuchus; used in tribute items.",
+    "id": "SarcosuchusSkin",
+    "className": "PrimalItemResource_SarcosuchusSkin_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Sauropod Vertebra",
+    "image": "/images/sauropod-vertebra.png",
+    "description": "Massive vertebrae from a sauropod; used in high-value tributes.",
+    "id": "SauropodVertebra",
+    "className": "PrimalItemResource_SauropodVertebra_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Simple Shotgun Ammo",
+    "image": "/images/simple-shotgun-ammo.png",
+    "description": "Standard shells for shotguns; reliable and easy to craft.",
+    "id": "SimpleShotgunAmmo",
+    "className": "PrimalItemAmmo_ShotgunShells_C",
+    "type": "Ammo",
+    "price": "0.01"
+  },
+  {
+    "name": "Skin",
+    "image": "/images/skin.png",
+    "description": "Any costumes or outfits for yourself or for your dino.",
+    "id": "skin",
+    "className": "PrimalItemAmmoSkin_C",
+    "type": "Skin",
+    "price": "0.1"
+  },
+  {
+    "name": "Snow Owl Saddle",
+    "image": "/images/snow-owl-saddle.png",
+    "description": "A lightweight, aerodynamic saddle designed for the Snow Owl, offering the rider comfort and maneuverability while enabling the creature’s swift aerial movements and unique healing abilities.",
+    "id": "OwlSaddle",
+    "className": "PrimalItemArmor_OwlSaddle_C",
+    "type": "Saddle",
+    "price": "0.5"
+  },
+  {
+    "name": "Spinosaurus Sail",
+    "image": "/images/spinosaurus-sail.png",
+    "description": "Dorsal sail harvested from Spinosaurus; valuable in boss tributes.",
+    "id": "SpinosaurusSail",
+    "className": "PrimalItemResource_SpinosaurusSail_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Taxidermy",
+    "image": "/images/taxidermy.png",
+    "description": "Used to capture the Dermis of a dead creature.",
+    "id": "WeaponTaxidermyTool",
+    "className": "PrimalItem_WeaponTaxidermyTool_C",
+    "type": "Weapon",
+    "price": "2"
+  },
+  {
+    "name": "Taxidermy Base",
+    "image": "/images/taxidermy-base.png",
+    "description": "Is a structure used to display harvested creature dermises (skins).",
+    "id": "TaxidermyBase",
+    "className": "PrimalItemStructure_TaxidermyBase_C",
+    "type": "Structure",
+    "price": "1"
+  },
+  {
+    "name": "Therizino Claws",
+    "image": "/images/therizino-claws.png",
+    "description": "Claws harvested from Therizinosaurus; used in boss tributes.",
+    "id": "TherizinoClaws",
+    "className": "PrimalItemResource_TherizinoClaws_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Thylacoleo Hook-Claw",
+    "image": "/images/thylacoleo-hook-claw.png",
+    "description": "Hook-claw obtained from Thylacoleo; used for high-tier tributes.",
+    "id": "ThylacoleoHookClaw",
+    "className": "PrimalItemResource_ThylacoleoClaw_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Titanoboa Venom",
+    "image": "/images/titanoboa-venom.png",
+    "description": "Venom from a Titanoboa; used as tribute or in crafting.",
+    "id": "TitanoboaVenom",
+    "className": "PrimalItemResource_TitanoboaVenom_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Titanosaur Platform Saddle",
+    "image": "/images/titanosaur-platform-saddle.png",
+    "description": "Massive saddle that converts a Titanosaur into a mobile building platform.",
+    "id": "TitanosaurPlatformSaddle",
+    "className": "PrimalItemArmor_TitanosaurSaddlePlatform_C",
+    "type": "Armor",
+    "price": "7"
+  },
+  {
+    "name": "Tusoteuthis Tentacle",
+    "image": "/images/tusoteuthis-tentacle.png",
+    "description": "Tentacle harvested from Tusoteuthis; tribute or crafting component.",
+    "id": "TusoteuthisTentacle",
+    "className": "PrimalItemResource_TusoteuthisTentacle_C",
+    "type": "Artifact",
+    "price": "0.15"
+  },
+  {
+    "name": "Tyrannosaurus Arm",
+    "image": "/images/tyrannosaurus-arm.png",
+    "description": "Powerful limb of a Tyrannosaurus; used as tribute material.",
+    "id": "TyrannosaurusArm",
+    "className": "PrimalItemResource_TyrannosaurusArm_C",
+    "type": "Artifact",
+    "price": "0.05"
+  },
+  {
+    "name": "Wind Turbine",
+    "image": "/images/wind-turbine.png",
+    "description": "Generates electricity from wind power. More efficient at higher elevations.",
+    "id": "WindTurbine",
+    "className": "PrimalItemStructure_WindTurbine_C",
+    "type": "Structure",
+    "price": "2"
+  },
+  {
+    "name": "Wood Tree Platform",
+    "image": "/images/wood-tree-platform.png",
+    "description": "A platform that can be placed on trees for defensive or elevated building.",
+    "id": "WoodTreePlatform",
+    "className": "PrimalItemStructure_WoodTreePlatform_C",
+    "type": "Structure",
+    "price": "1.5"
+  },
+  {
+    "name": "Yutyrannus Lungs",
+    "image": "/images/yutyrannus-lungs.png",
+    "description": "Large lungs from Yutyrannus; used in elite tributes.",
+    "id": "YutyrannusLungs",
+    "className": "PrimalItemResource_YutyrannusLungs_C",
+    "type": "Artifact",
+    "price": "0.05"
+  }
+]
