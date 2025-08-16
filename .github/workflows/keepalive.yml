@@ -1,13 +1,22 @@
-name: keep-alive
-on:
-  schedule:
-    - cron: "*/5 * * * *"   # every 5 minutes
-  workflow_dispatch:        # allows manual run from GitHub UI
-
-jobs:
-  ping:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Curl health endpoint
-        run: |
-          curl -fsS -m 10 -o /dev/null https://jurassicark-2.onrender.com/healthz
+- name: Curl health endpoint (retry with long timeout + timing)
+  env:
+    URL: https://jurassicark-2.onrender.com/healthz
+  run: |
+    set -e
+    tries=6
+    for i in $(seq 1 $tries); do
+      echo "Attempt $i/$tries → $URL"
+      # long overall timeout, separate connect timeout, follow redirects, show timings
+      out=$(curl -sS -o /dev/null -w "code=%{http_code} connect=%{time_connect}s ttfb=%{time_starttransfer}s total=%{time_total}s\n" \
+            -m 90 --connect-timeout 20 -L "$URL" || true)
+      echo "$out"
+      code=$(echo "$out" | sed -n 's/.*code=\([0-9][0-9][0-9]\).*/\1/p')
+      if [ -n "$code" ] && [ "$code" -ge 200 ] && [ "$code" -lt 300 ]; then
+        echo "OK"
+        exit 0
+      fi
+      # render can return 502/503 or just be slow while waking; wait and retry
+      sleep 20
+    done
+    echo "Health check failed after $tries attempts."
+    exit 1
