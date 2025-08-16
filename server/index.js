@@ -10,14 +10,13 @@ const allowedOrigins = [
   "http://localhost:5173"
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "OPTIONS"]
-  })
-);
+const corsOpts = {
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "OPTIONS"]
+};
 
-app.options("(.*)", cors({ origin: allowedOrigins }));
+app.use(cors(corsOpts));
+app.options(/.*/, cors(corsOpts));
 
 app.get("/", (_req, res) => res.send("OK"));
 
