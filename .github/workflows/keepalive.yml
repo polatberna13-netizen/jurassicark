@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Curl health endpoint
         run: |
-          curl -fsS -m 10 -o /dev/null https://your-app.onrender.com/healthz
+          curl -fsS -m 10 -o /dev/null https://jurassicark-2.onrender.com/healthz
