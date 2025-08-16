@@ -1,4 +1,4 @@
-- name: Curl health endpoint (retry with long timeout + timing)
+name: Curl health endpoint (retry with long timeout + timing)
   env:
     URL: https://jurassicark-2.onrender.com/healthz
   run: |
