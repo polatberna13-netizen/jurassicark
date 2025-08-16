@@ -2,5 +2,3 @@ node_modules
 /server/.env
 .env
 .DS_Store
-.env.production
-.env.local
