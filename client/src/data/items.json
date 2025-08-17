@@ -288,11 +288,11 @@
     "price": "0.3"
   },
   {
-    "name": "Rock Golem Saddle",
+    "name": "Rock Drake Saddle",
     "image": "/images/rock-golem-saddle.png",
-    "description": "A durable saddle built to fit the massive frame of a Rock Golem, allowing survivors to ride and command these formidable stone guardians in battle or for heavy labor.",
+    "description": "Allows players to ride and control a Rock Drake, a creature with unique gliding and climbing abilities. ",
     "id": "RockGolemSaddle",
-    "className": "PrimalItemArmor_RockGolemSaddle_C",
+    "className": "PrimalItemArmor_RockDrakeSaddle_C",
     "type": "Saddle",
     "price": "0.5"
   },
