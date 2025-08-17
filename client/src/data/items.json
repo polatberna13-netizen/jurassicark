@@ -291,7 +291,7 @@
     "name": "Rock Drake Saddle",
     "image": "/images/rock-golem-saddle.png",
     "description": "Allows players to ride and control a Rock Drake, a creature with unique gliding and climbing abilities. ",
-    "id": "RockGolemSaddle",
+    "id": "RockDrakeSaddle",
     "className": "PrimalItemArmor_RockDrakeSaddle_C",
     "type": "Saddle",
     "price": "0.5"
