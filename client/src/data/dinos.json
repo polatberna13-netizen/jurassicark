@@ -18,15 +18,6 @@
     "type": "Mammal Predator"
   },
   {
-    "name": "Fire Wyvern",
-    "image": "/images/wyvern.png",
-    "description": "Balanced wrath of flame; excels at area damage and has fire resistance.",
-    "id": "Ragnarok_Wyvern_Override_C",
-    "price": "3",
-    "maxLevel": false,
-    "type": "Wyvern"
-  },
-  {
     "name": "Giganotosaurus",
     "image": "/images/giganotosaurus.png",
     "description": "Massive carnivore with colossal damage and reach; among the strongest land predators.",
@@ -43,24 +34,6 @@
     "price": "2.5",
     "maxLevel": false,
     "type": "Flyer"
-  },
-  {
-    "name": "Ice Wyvern",
-    "image": "/images/wyvern.png",
-    "description": "Breathes a freezing blast that slows or freezes targets; ideal for crowd control.",
-    "id": "Ragnarok_Wyvern_Override_Ice_C",
-    "price": "4",
-    "maxLevel": false,
-    "type": "Wyvern"
-  },
-  {
-    "name": "Lightning Wyvern",
-    "image": "/images/wyvern.png",
-    "description": "Wyvern variant that unleashes a lightning beam whose damage scales with melee; high burst but heavy stamina drain.",
-    "id": "Wyvern_Character_BP_Lightning_C",
-    "price": "3",
-    "maxLevel": false,
-    "type": "Wyvern"
   },
   {
     "name": "Mantis",
@@ -97,24 +70,6 @@
     "price": "0.1",
     "maxLevel": false,
     "type": "Herbivore"
-  },
-  {
-    "name": "Phoenix",
-    "image": "/images/phoenix.png",
-    "description": "A mythical bird of fire and rebirth, the Phoenix is said to burst into flames upon death, only to rise anew from its own ashes. Known for its radiant plumage, searing heat, and unmatched grace in flight, it is a symbol of immortality and renewal in countless legends.",
-    "id": "Phoenix",
-    "price": "5",
-    "maxLevel": false,
-    "type": "Fantasy Creature"
-  },
-  {
-    "name": "Poison Wyvern",
-    "image": "/images/wyvern.png",
-    "description": "Shoots long-range toxic projectiles that ignore armor and deal damage over time.",
-    "id": "Wyvern_Character_BP_Poison_C",
-    "price": "2.5",
-    "maxLevel": false,
-    "type": "Wyvern"
   },
   {
     "name": "Purlovia",
@@ -223,14 +178,5 @@
     "price": "5",
     "maxLevel": false,
     "type": "Fantasy Creature"
-  },
-  {
-    "name": "Wyvern",
-    "image": "/images/wyvern.png",
-    "description": "A massive dragon-like reptile with elemental breath and the ability to carry riders; must be hatched from an egg and raised.",
-    "id": "Wyvern_Character_BP_Base_C",
-    "price": "3",
-    "maxLevel": false,
-    "type": "Wyvern"
   }
 ]
