@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Amargasaurus Saddle",
+    "image": "/images/amargasaurus-saddle.png",
+    "description": "A durable saddle for riding an Amargasaurus, designed to handle its spiked body.",
+    "id": "AmargasaurusSaddle",
+    "className": "PrimalItemArmor_AmargaSaddle_C",
+    "type": "Saddle",
+    "price": "0.8"
+  },
+  {
+    "name": "Dakosaurus Saddle",
+    "image": "/images/dakosaurus-saddle.png",
+    "description": "A marine saddle for riding the Dakosaurus, giving improved underwater mobility.",
+    "id": "DakosaurusSaddle",
+    "className": "PrimalItemArmor_DakosaurusSaddle_C",
+    "type": "Saddle",
+    "price": "0.2"
+  },
+  {
+    "name": "Dakosaurus Platform Saddle",
+    "image": "/images/dakosaurus-platform-saddle.png",
+    "description": "A massive platform saddle for the Dakosaurus, allowing construction of structures on its back while underwater.",
+    "id": "DakosaurusPlatformSaddle",
+    "className": "PrimalItemArmor_DakosaurusPlatformSaddle_C",
+    "type": "Saddle",
+    "price": "0.5"
+  },
+  {
+    "name": "Deinonychus Saddle",
+    "image": "/images/deinonychus-saddle.png",
+    "description": "A specialized saddle for riding a Deinonychus, offering improved control and protection.",
+    "id": "DeinonychusSaddle",
+    "className": "PrimalItemArmor_DeinonychusSaddle_C",
+    "type": "Saddle",
+    "price": "0.5"
+  },
+  {
+    "name": "Hyaenodon Meatpack Saddle",
+    "image": "/images/hyaenodon-saddle.png",
+    "description": "Provides control over a Hyaenodon pack leader for coordinated hunting.",
+    "id": "HyaenodonSaddle",
+    "className": "PrimalItemArmor_HyaenodonSaddle_C",
+    "type": "Saddle",
+    "price": "1"
+  },
+  {
+    "name": "Managarmr Saddle",
+    "image": "/images/managarmr-saddle.png",
+    "description": "A frost-resistant saddle for riding the agile Managarmr.",
+    "id": "ManagarmrSaddle",
+    "className": "PrimalItemArmor_ManagarmrSaddle_C",
+    "type": "Saddle",
+    "price": "15"
+  }
+]

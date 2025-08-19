@@ -178,5 +178,32 @@
     "price": "5",
     "maxLevel": false,
     "type": "Fantasy Creature"
+  },
+  {
+    "name": "Gacha",
+    "image": "/images/gacha.png",
+    "description": "Crystal-producing creature that can generate random resources.",
+    "id": "Gacha_Character_BP_C",
+    "price": "30",
+    "maxLevel": false,
+    "type": "Fantasy Creature"
+  },
+  {
+    "name": "Deinonychus",
+    "image": "/images/deinonychus.png",
+    "description": "Feathered raptor that is aggressive and fast; excels at coordinated attacks.",
+    "id": "Deinonychus_Character_BP_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Land Predator"
+  },
+  {
+    "name": "Megatherium",
+    "image": "/images/megatherium.png",
+    "description": "Large bear-like omnivore that becomes exceptionally powerful against insects; valued for chitin farming and combat versatility.",
+    "id": "Megatherium_Character_BP_C",
+    "price": "0.5",
+    "maxLevel": false,
+    "type": "Mammal"
   }
 ]

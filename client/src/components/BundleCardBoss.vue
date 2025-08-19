@@ -10,7 +10,14 @@
       <div v-for="it in safeItems" :key="it.itemId" class="bundle-item">
         <img :src="it.image" :alt="it.name" />
         <div class="bundle-info">
-          <span class="name">{{ it.name }}</span>
+          <span class="name">
+            <template v-if="it.itemId === 'MedicalBrew'">
+              25 × {{ it.name }}
+            </template>
+            <template v-else>
+              {{ it.name }}
+            </template>
+          </span>
           <span class="type">{{ it.type }}</span>
           <span v-if="it.qty && it.qty > 1" class="qty">×{{ it.qty }}</span>
           <span class="price">{{ displayPrice(it.price) }}€</span>

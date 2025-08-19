@@ -448,5 +448,32 @@
     "className": "PrimalItemResource_YutyrannusLungs_C",
     "type": "Artifact",
     "price": "0.05"
+  },
+  {
+    "name": "Deinonychus Saddle",
+    "image": "/images/deinonychus-saddle.png",
+    "description": "A specialized saddle for riding a Deinonychus, offering improved control and protection.",
+    "id": "DeinonychusSaddle",
+    "className": "PrimalItemArmor_DeinonychusSaddle_C",
+    "type": "Saddle",
+    "price": "0.2"
+  },
+  {
+    "name": "Gacha Saddle",
+    "image": "/images/gacha-saddle.png",
+    "description": "A crafted saddle that allows riding and better control of a Gacha.",
+    "id": "GachaSaddle",
+    "className": "PrimalItemArmor_GachaSaddle_C",
+    "type": "Saddle",
+    "price": "1"
+  },
+  {
+    "name": "Megatherium Saddle",
+    "image": "/images/megatherium-saddle.png",
+    "description": "A saddle designed for the Megatherium, useful in chitin farming expeditions.",
+    "id": "MegatheriumSaddle",
+    "className": "PrimalItemArmor_MegatheriumSaddle_C",
+    "type": "Saddle",
+    "price": "0.1"
   }
 ]
