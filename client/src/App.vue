@@ -27,81 +27,49 @@
       <section class="mb-4">
         <BundleCardTribute :items="tributeArtifactItems" />
       </section>
-      <section id="engram-section" class="mb-5">
-        <NavBar
-          title="Engrams"
-          :categories="engramCategories"
-          :activeCategory="selectedEngramCategory"
-          searchPlaceholder="Search engrams"
-          @categorySelected="filterEngramsByCategory"
-          @search="searchEngrams"
-          @showAll="resetEngramsFilters"
-        />
+      <section id="engrams-section" class="mb-5">
+        <NavBar title="Engrams" :categories="engramCategories" :activeCategory="selectedEngramCategory"
+          searchPlaceholder="Search engrams" @categorySelected="filterEngramsByCategory" @search="searchEngrams"
+          @showAll="resetEngramsFilters" />
 
         <div class="row g-4">
-          <div
-            v-if="filteredEngrams.length > 0"
-            class="col-lg-4 col-md-6 mb-4"
-            v-for="engram in filteredEngrams"
-            :key="engram.id"
-          >
-            <ItemCard :engram="formatEngram(engram)" @add-to-cart="onAddToCart" />
+          <div v-if="filteredEngrams.length > 0" class="col-lg-4 col-md-6 mb-4" v-for="engram in filteredEngrams"
+            :key="engram.id">
+            <!-- was :engram -->
+            <ItemCard :item="formatEngram(engram)" @add-to-cart="onAddToCart" />
           </div>
           <div v-else>No engram found!</div>
         </div>
       </section>
       <section id="items-section" class="mb-5">
-        <NavBar
-          title="Items"
-          :categories="itemCategories"
-          :activeCategory="selectedItemCategory"
-          searchPlaceholder="Search items"
-          @categorySelected="filterItemsByCategory"
-          @search="searchItems"
-          @showAll="resetItemsFilters"
-        />
+        <NavBar title="Items" :categories="itemCategories" :activeCategory="selectedItemCategory"
+          searchPlaceholder="Search items" @categorySelected="filterItemsByCategory" @search="searchItems"
+          @showAll="resetItemsFilters" />
 
         <div class="row g-4">
-          <div
-            v-if="filteredItems.length > 0"
-            class="col-lg-4 col-md-6 mb-4"
-            v-for="item in filteredItems"
-            :key="item.className"
-          >
+          <div v-if="filteredItems.length > 0" class="col-lg-4 col-md-6 mb-4" v-for="item in filteredItems"
+            :key="item.className">
             <ItemCard :item="formatItem(item)" @add-to-cart="onAddToCart" />
           </div>
           <div v-else>No item found!</div>
         </div>
       </section>
       <section id="dinos-section" class="mb-5">
-        <NavBar
-          title="Dinosaurs"
-          :categories="dinoCategories"
-          :activeCategory="selectedDinoCategory"
-          searchPlaceholder="Search dinosaurs"
-          @categorySelected="filterDinosByCategory"
-          @search="searchDinos"
-          @showAll="resetDinosFilters"
-        />
+        <NavBar title="Dinosaurs" :categories="dinoCategories" :activeCategory="selectedDinoCategory"
+          searchPlaceholder="Search dinosaurs" @categorySelected="filterDinosByCategory" @search="searchDinos"
+          @showAll="resetDinosFilters" />
 
         <div class="row g-4">
-          <div
-            v-if="filteredDinos.length > 0"
-            class="col-lg-4 col-md-6 mb-4"
-            v-for="dino in filteredDinos"
-            :key="dino.id"
-          >
+          <div v-if="filteredDinos.length > 0" class="col-lg-4 col-md-6 mb-4" v-for="dino in filteredDinos"
+            :key="dino.id">
             <ItemCard :item="formatDino(dino)" @add-to-cart="onAddToCart" />
           </div>
           <div v-else>No dinosaurs found!</div>
         </div>
       </section>
 
-      <button
-        v-show="showScrollTop"
-        class="button position-fixed bottom-0 end-0 m-4 rounded-circle rounded"
-        @click="scrollToTop"
-      >
+      <button v-show="showScrollTop" class="button position-fixed bottom-0 end-0 m-4 rounded-circle rounded"
+        @click="scrollToTop">
         <i class="bi bi-arrow-up"></i>
       </button>
     </div>
@@ -122,9 +90,9 @@ import itemsData from './data/items.json'
 import dinosData from './data/dinos.json'
 import engramsData from './data/engrams.json'
 import { useCart } from './stores/useCart'
-import BundleCard from './components/BundleCard.vue'           
-import BundleCardBoss from './components/BundleCardBoss.vue'   
-import BundleCardTribute from './components/BundleCardTribute.vue' 
+import BundleCard from './components/BundleCard.vue'
+import BundleCardBoss from './components/BundleCardBoss.vue'
+import BundleCardTribute from './components/BundleCardTribute.vue'
 
 const { add, count } = useCart()
 
@@ -255,7 +223,7 @@ const bossFightKitItems = computed(() => {
     .filter(i => wanted.has(i.name))
     .map(i => {
       const f = formatItem(i)
-      if (f.name === 'Simple Shotgun Ammo') return { ...f, qty: 100 } 
+      if (f.name === 'Simple Shotgun Ammo') return { ...f, qty: 100 }
       return f
     })
 })
