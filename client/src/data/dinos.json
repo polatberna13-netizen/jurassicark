@@ -27,15 +27,6 @@
     "type": "Land Predator"
   },
   {
-    "name": "Griffin",
-    "image": "/images/griffin.png",
-    "description": "Aerial predator with powerful dive attacks and aerial agility.",
-    "id": "Griffin_Character_BP_C",
-    "price": "2.5",
-    "maxLevel": false,
-    "type": "Flyer"
-  },
-  {
     "name": "Mantis",
     "image": "/images/mantis.png",
     "description": "Giant insect with grappling claws, toxic ranged spit, and mounted weapon capability.",
@@ -52,6 +43,15 @@
     "price": "1",
     "maxLevel": false,
     "type": "Aquatic"
+  },
+  {
+    "name": "Managarmr",
+    "image": "/images/managarmr.png",
+    "description": "Frost-breathing, agile beast capable of powerful leaps and glides.",
+    "id": "Managarmr_Character_BP_C",
+    "price": "7.5",
+    "maxLevel": false,
+    "type": "Fantasy Creature"
   },
   {
     "name": "Otter",

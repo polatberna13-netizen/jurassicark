@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Egg Incubator",
+    "image": "/images/egg_incubator.png",
+    "description": "A powered structure that allows precise control of fertilized egg incubation, adjusting temperature automatically for optimal hatching.",
+    "id": "001",
+    "price": "5",
+    "type": "Structure"
+  },
+  {
+    "name": "Managarmr Saddle",
+    "image": "/images/managarmr-saddle.png",
+    "description": "A saddle that allows survivors to ride and control the agile Managarmr, capable of frost breath and powerful leaps on Extinction.",
+    "id": "002",
+    "price": "0.5",
+    "type": "Saddle"
+  },
+  {
+    "name": "Snow Owl Saddle",
+    "image": "/images/snow-owl-saddle.png",
+    "description": "A saddle for the Snow Owl, enabling flight and the use of its healing freeze ability, found on Extinction.",
+    "id": "003",
+    "price": "1",
+    "type": "Saddle"
+  },
+  {
+    "name": "Gacha Saddle",
+    "image": "/images/gacha-saddle.png",
+    "description": "A saddle for the Gacha, allowing survivors to ride the creature which produces valuable resources through its crystals.",
+    "id": "004",
+    "price": "0.2",
+    "type": "Saddle"
+  },
+  {
+    "name": "Mining Drill",
+    "image": "/images/mining_drill.png",
+    "description": "A gasoline-powered tool that efficiently harvests metal, stone, flint, and other resources in large quantities.",
+    "id": "005",
+    "price": "1",
+    "type": "Tool"
+  },
+  {
+    "name": "Hazard Suit Boots",
+    "image": "/images/hazard_suit_boots.png",
+    "description": "Protective boots that are part of the Hazard Suit, providing full radiation protection on Aberration.",
+    "id": "006",
+    "price": "0.1",
+    "type": "Armor"
+  },
+  {
+    "name": "Hazard Suit Gloves",
+    "image": "/images/hazard_suit_gloves.png",
+    "description": "Protective gloves that are part of the Hazard Suit, providing full radiation protection on Aberration.",
+    "id": "007",
+    "price": "0.1",
+    "type": "Armor"
+  },
+  {
+    "name": "Hazard Suit Shirt",
+    "image": "/images/hazard_suit_shirt.png",
+    "description": "A protective chest piece forming part of the Hazard Suit, essential for radiation-heavy zones on Aberration.",
+    "id": "008",
+    "price": "0.1",
+    "type": "Armor"
+  },
+  {
+    "name": "Hazard Suit Pants",
+    "image": "/images/hazard_suit_pants.png",
+    "description": "Protective leggings from the Hazard Suit set, providing resistance against radiation on Aberration.",
+    "id": "009",
+    "price": "0.1",
+    "type": "Armor"
+  },
+  {
+    "name": "Hazard Suit Hat",
+    "image": "/images/hazard_suit_hat.png",
+    "description": "A helmet forming part of the Hazard Suit set, offering full-body radiation shielding on Aberration.",
+    "id": "010",
+    "price": "0.1",
+    "type": "Armor"
+  },
+  {
+    "name": "Rock Drake Saddle",
+    "image": "/images/rock-drake-saddle.png",
+    "description": "A saddle for the Rock Drake, a climbing and gliding creature found on Aberration, granting survivors control over its stealth and mobility.",
+    "id": "011",
+    "price": "1",
+    "type": "Saddle"
+  },
+  {
+    "name": "Climbing Pick",
+    "image": "/images/climbing-pick.png",
+    "description": "A handheld tool that allows survivors to scale vertical surfaces and cliffs, vital for exploration on Aberration.",
+    "id": "012",
+    "price": "0.5",
+    "type": "Tool"
+  },
+  {
+    "name": "Wind Turbine",
+    "image": "/images/wind-turbine.png",
+    "description": "A structure that generates electricity in desert biomes, providing a renewable power source in place of generators.",
+    "id": "013",
+    "price": "3.5",
+    "type": "Structure"
+  },
+  {
+    "name": "Chainsaw",
+    "image": "/images/chainsaw.png",
+    "description": "A gasoline-powered tool that excels at harvesting wood, thatch, and organic polymer efficiently.",
+    "id": "014",
+    "price": "0.5",
+    "type": "Tool"
+  },
+  {
+    "name": "Mantis Saddle",
+    "image": "/images/mantis-saddle.png",
+    "description": "A saddle for the Mantis, a versatile creature that can wield melee weapons and tools when equipped.",
+    "id": "015",
+    "price": "0.5",
+    "type": "Saddle"
+  },
+  {
+    "name": "Mirror",
+    "image": "/images/mirror.png",
+    "description": "A decorative structure that allows survivors to place a reflective surface for cosmetic or roleplay purposes in their bases.",
+    "id": "016",
+    "price": "1",
+    "type": "Structure"
+  },
+  {
+    "name": "Rock Golem Saddle",
+    "image": "/images/rock-golem-saddle.png",
+    "description": "A saddle for the Rock Elemental (Rock Golem), enabling survivors to ride and control this powerful siege creature on Scorched Earth.",
+    "id": "017",
+    "price": "1",
+    "type": "Saddle"
+  }
+]

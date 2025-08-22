@@ -43,14 +43,5 @@
     "className": "PrimalItemArmor_HyaenodonSaddle_C",
     "type": "Saddle",
     "price": "1"
-  },
-  {
-    "name": "Managarmr Saddle",
-    "image": "/images/managarmr-saddle.png",
-    "description": "A frost-resistant saddle for riding the agile Managarmr.",
-    "id": "ManagarmrSaddle",
-    "className": "PrimalItemArmor_ManagarmrSaddle_C",
-    "type": "Saddle",
-    "price": "15"
   }
 ]

@@ -475,5 +475,32 @@
     "className": "PrimalItemArmor_MegatheriumSaddle_C",
     "type": "Saddle",
     "price": "0.1"
+  },
+  {
+    "name": "Managarmr Saddle",
+    "image": "/images/managarmr-saddle.png",
+    "description": "A frost-resistant saddle for riding the agile Managarmr.",
+    "id": "ManagarmrSaddle",
+    "className": "PrimalItemArmor_ManagarmrSaddle_C",
+    "type": "Saddle",
+    "price": "0.25"
+  }, 
+  {
+    "name": "Rock Golem Saddle",
+    "image": "/images/rock-golem-saddle.png",
+    "description": "A saddle for the Rock Elemental (Rock Golem), enabling survivors to ride and control this powerful siege creature on Scorched Earth.",
+    "id": "RockGolemSaddle",
+    "className": "PrimalItemArmor_RockGolemSaddle_C",
+    "price": "0.5",
+    "type": "Saddle"
+  },
+  {
+    "name": "Mantis Saddle",
+    "image": "/images/mantis-saddle.png",
+    "description": "A saddle for the Mantis, a versatile creature that can wield melee weapons and tools when equipped.",
+    "id": "MantisSaddle",
+    "className": "PrimalItemArmor_MantisSaddle_C",
+    "price": "0.25",
+    "type": "Saddle"
   }
 ]
