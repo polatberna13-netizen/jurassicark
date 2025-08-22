@@ -6,7 +6,7 @@
     "id": "AllosaurusBrain",
     "className": "PrimalItemResource_AllosaurusBrain_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Argentavis Talon",
@@ -15,7 +15,7 @@
     "id": "ArgentavisTalon",
     "className": "PrimalItemResource_ArgentavisTalon_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Basilosaurus Blubber",
@@ -24,7 +24,7 @@
     "id": "BasilosaurusBlubber",
     "className": "PrimalItemResource_BasilosaurusBlubber_C",
     "type": "Artifact",
-    "price": "0.15"
+    "price": "0.03"
   },
   {
     "name": "Black Pearl",
@@ -42,7 +42,7 @@
     "id": "ChibiPet",
     "className": "PrimalItemSkin_ChibiDino_Generic_C",
     "type": "Cosmetic",
-    "price": "2"
+    "price": "1"
   },
   {
     "name": "Electrical Generator",
@@ -60,7 +60,7 @@
     "id": "Electronics",
     "className": "PrimalItemResource_Electronics_C",
     "type": "Resource",
-    "price": "0.01"
+    "price": "0.001"
   },
   {
     "name": "Extraordinary Kibble",
@@ -78,7 +78,7 @@
     "id": "Fertilizer",
     "className": "PrimalItemConsumable_Fertilizer_Compost_C",
     "type": "Resource",
-    "price": "0.01"
+    "price": "0.001"
   },
   {
     "name": "Gasoline",
@@ -87,7 +87,7 @@
     "id": "Gasoline",
     "className": "PrimalItemResource_Gasoline_C",
     "type": "Resource",
-    "price": "0.01"
+    "price": "0.001"
   },
   {
     "name": "Giganotosaurus Heart",
@@ -96,7 +96,7 @@
     "id": "GiganotosaurusHeart",
     "className": "PrimalItemResource_GiganotosaurusHeart_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Industrial Cooker",
@@ -105,7 +105,7 @@
     "id": "IndustrialCooker",
     "className": "PrimalItemStructure_IndustrialCookingPot_C",
     "type": "Structure",
-    "price": "7"
+    "price": "3.5"
   },
   {
     "name": "Industrial Forge",
@@ -114,7 +114,7 @@
     "id": "IndustrialForge",
     "className": "PrimalItemStructure_IndustrialForge_C",
     "type": "Structure",
-    "price": "10"
+    "price": "5"
   },
   {
     "name": "Industrial Grill",
@@ -123,7 +123,7 @@
     "id": "IndustrialGrill",
     "className": "PrimalItemStructure_IndustrialGrill_C",
     "type": "Structure",
-    "price": "2"
+    "price": "1"
   },
   {
     "name": "Industrial Grinder",
@@ -132,7 +132,7 @@
     "id": "IndustrialGrinder",
     "className": "PrimalItemStructure_IndustrialGrinder_C",
     "type": "Structure",
-    "price": "15"
+    "price": "7.5"
   },
   {
     "name": "Large Elevator Platform",
@@ -168,7 +168,7 @@
     "id": "MegalaniaToxin",
     "className": "PrimalItemResource_MegalaniaVenom_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Megalodon Tooth",
@@ -177,7 +177,7 @@
     "id": "MegalodonTooth",
     "className": "PrimalItemResource_MegalodonTooth_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Metal Ingot",
@@ -186,7 +186,7 @@
     "id": "MetalIngot",
     "className": "PrimalItemResource_MetalIngot_C",
     "type": "Resource",
-    "price": "0.01"
+    "price": "0.001"
   },
   {
     "name": "Metal Tree Platform",
@@ -222,7 +222,7 @@
     "id": "Polymer",
     "className": "PrimalItemResource_Polymer_C",
     "type": "Resource",
-    "price": "0.01"
+    "price": "0.001"
   },
   {
     "name": "Pump-Action Shotgun",
@@ -303,7 +303,7 @@
     "id": "SarcosuchusSkin",
     "className": "PrimalItemResource_SarcosuchusSkin_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Sauropod Vertebra",
@@ -312,7 +312,7 @@
     "id": "SauropodVertebra",
     "className": "PrimalItemResource_SauropodVertebra_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Simple Shotgun Ammo",
@@ -330,7 +330,7 @@
     "id": "skin",
     "className": "PrimalItemAmmoSkin_C",
     "type": "Skin",
-    "price": "0.1"
+    "price": "0.05"
   },
   {
     "name": "Snow Owl Saddle",
@@ -348,7 +348,7 @@
     "id": "SpinosaurusSail",
     "className": "PrimalItemResource_SpinosaurusSail_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Taxidermy",
@@ -375,7 +375,7 @@
     "id": "TherizinoClaws",
     "className": "PrimalItemResource_TherizinoClaws_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Thylacoleo Hook-Claw",
@@ -384,7 +384,7 @@
     "id": "ThylacoleoHookClaw",
     "className": "PrimalItemResource_ThylacoleoClaw_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Titanoboa Venom",
@@ -393,7 +393,7 @@
     "id": "TitanoboaVenom",
     "className": "PrimalItemResource_TitanoboaVenom_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Titanosaur Platform Saddle",
@@ -411,7 +411,7 @@
     "id": "TusoteuthisTentacle",
     "className": "PrimalItemResource_TusoteuthisTentacle_C",
     "type": "Artifact",
-    "price": "0.15"
+    "price": "0.03"
   },
   {
     "name": "Tyrannosaurus Arm",
@@ -420,7 +420,7 @@
     "id": "TyrannosaurusArm",
     "className": "PrimalItemResource_TyrannosaurusArm_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Wind Turbine",
@@ -447,7 +447,7 @@
     "id": "YutyrannusLungs",
     "className": "PrimalItemResource_YutyrannusLungs_C",
     "type": "Artifact",
-    "price": "0.05"
+    "price": "0.01"
   },
   {
     "name": "Deinonychus Saddle",
