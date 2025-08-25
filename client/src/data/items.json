@@ -54,13 +54,13 @@
     "price": "0.3"
   },
   {
-    "name": "Electronics",
+    "name": "100 x Electronics",
     "image": "/images/electronics.png",
     "description": "Crafted from silica pearls and metal ingots. Required in advanced electrical crafting.",
     "id": "Electronics",
     "className": "PrimalItemResource_Electronics_C",
     "type": "Resource",
-    "price": "0.001"
+    "price": "0.1"
   },
   {
     "name": "Extraordinary Kibble",
@@ -72,22 +72,22 @@
     "price": "0.2"
   },
   {
-    "name": "Fertilizer",
+    "name": "100 x Fertilizer",
     "image": "/images/fertilizer.png",
     "description": "High-quality fertilizer made in a compost bin or dung beetle. Used to grow crops in crop plots.",
     "id": "Fertilizer",
     "className": "PrimalItemConsumable_Fertilizer_Compost_C",
     "type": "Resource",
-    "price": "0.001"
+    "price": "0.1"
   },
   {
-    "name": "Gasoline",
+    "name": "100 x Gasoline",
     "image": "/images/gasoline.png",
     "description": "Crafted from oil and hide in a forge. Used to fuel electrical structures and vehicles.",
     "id": "Gasoline",
     "className": "PrimalItemResource_Gasoline_C",
     "type": "Resource",
-    "price": "0.001"
+    "price": "0.1"
   },
   {
     "name": "Giganotosaurus Heart",
@@ -180,13 +180,13 @@
     "price": "0.01"
   },
   {
-    "name": "Metal Ingot",
+    "name": "100 x Metal Ingot",
     "image": "/images/metal-ingot.png",
     "description": "Created by refining metal ore in a forge. Used in many mid- to late-game crafting recipes.",
     "id": "MetalIngot",
     "className": "PrimalItemResource_MetalIngot_C",
     "type": "Resource",
-    "price": "0.001"
+    "price": "0.1"
   },
   {
     "name": "Metal Tree Platform",
@@ -222,7 +222,7 @@
     "id": "Polymer",
     "className": "PrimalItemResource_Polymer_C",
     "type": "Resource",
-    "price": "0.001"
+    "price": "0.1"
   },
   {
     "name": "Pump-Action Shotgun",
@@ -501,6 +501,15 @@
     "id": "MantisSaddle",
     "className": "PrimalItemArmor_MantisSaddle_C",
     "price": "0.25",
+    "type": "Saddle"
+  },
+  {
+    "name": "Rhyniognatha Saddle",
+    "image": "/images/rhyniognatha-saddle.png",
+    "description": "A saddle that lets survivors ride the Rhyniognatha and utilize its resin abilities and aerial strength.",
+    "id": "RhyniognathaSaddle",
+    "className": "PrimalItemArmor_RhyniognathaSaddle_C",
+    "price": "0.5",
     "type": "Saddle"
   }
 ]
