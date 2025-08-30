@@ -223,5 +223,41 @@
   "price": "15",
   "maxLevel": false,
   "type": "Insect"
+  },
+  {
+    "name": "Amargasaurus",
+    "image": "/images/amargasaurus.png",
+    "description": "Spiked sauropod with unique thermal regulation abilities.",
+    "id": "Amarga_Character_BP_C",
+    "price": "30",
+    "maxLevel": false,
+    "type": "Herbivore"
+  },
+  {
+    "name": "Hyaenodon",
+    "image": "/images/hyaenodon.png",
+    "description": "Pack-based predator that gains strength in numbers.",
+    "id": "Hyaenodon_Character_BP_C",
+    "price": "0.5",
+    "maxLevel": false,
+    "type": "Mammal Predator"
+  },
+  {
+    "name": "Amargasaurus",
+    "image": "/images/amargasaurus.png",
+    "description": "Spiked sauropod with unique thermal regulation abilities.",
+    "id": "Amarga_Character_BP_C",
+    "price": "7.5",
+    "maxLevel": false,
+    "type": "Herbivore"
+  },
+  {
+    "name": "Dakosaurus",
+    "image": "/images/dakosaurus.png",
+    "description": "Marine predator resembling a crocodile; swift underwater hunter.",
+    "id": "Dakosaurus_Character_BP_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Aquatic"
   }
 ]

@@ -511,5 +511,14 @@
     "className": "PrimalItemArmor_RhyniognathaSaddle_C",
     "price": "0.5",
     "type": "Saddle"
+  },
+  {
+    "name": "Wyvern Milk",
+    "image": "/images/wyvern-milk.png",
+    "description": "Essential for raising baby Wyverns. Restores 400 food and grants temporary fire resistance.",
+    "id": "WyvernMilk",
+    "className": "PrimalItemConsumable_WyvernMilk_C",
+    "type": "Consumable",
+    "price": "1"
   }
 ]
