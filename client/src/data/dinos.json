@@ -207,15 +207,6 @@
     "type": "Mammal"
   },
   {
-  "name": "Amargasaurus",
-  "image": "/images/amargasaurus.png",
-  "description": "A unique sauropod with sharp spines along its neck and back, capable of releasing devastating heat or cold projectiles. Valued for its combat utility, slowing enemies, and aiding in sieges.",
-  "id": "Amarga_Character_BP_C",
-  "price": "7.5",
-  "maxLevel": false,
-  "type": "Mammal"
-  }, 
-  {
   "name": "Rhyniognatha",
   "image": "/images/rhyniognatha.png",
   "description": "A massive insect, one of the largest arthropods on the island. Known for its ability to produce resin, carry heavy loads, and offer versatile utility in combat and transport. Highly valued as a powerful support tame.",
@@ -223,15 +214,6 @@
   "price": "15",
   "maxLevel": false,
   "type": "Insect"
-  },
-  {
-    "name": "Amargasaurus",
-    "image": "/images/amargasaurus.png",
-    "description": "Spiked sauropod with unique thermal regulation abilities.",
-    "id": "Amarga_Character_BP_C",
-    "price": "30",
-    "maxLevel": false,
-    "type": "Herbivore"
   },
   {
     "name": "Hyaenodon",
@@ -253,7 +235,7 @@
   },
   {
     "name": "Dakosaurus",
-    "image": "/images/dakosaurus.png",
+    "image": "/images/mosasaurus.png",
     "description": "Marine predator resembling a crocodile; swift underwater hunter.",
     "id": "Dakosaurus_Character_BP_C",
     "price": "3",
