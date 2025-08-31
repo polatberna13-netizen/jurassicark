@@ -207,13 +207,13 @@
     "type": "Mammal"
   },
   {
-  "name": "Rhyniognatha",
-  "image": "/images/rhyniognatha.png",
-  "description": "A massive insect, one of the largest arthropods on the island. Known for its ability to produce resin, carry heavy loads, and offer versatile utility in combat and transport. Highly valued as a powerful support tame.",
-  "id": "Rhynio_Character_BP_C",
-  "price": "15",
-  "maxLevel": false,
-  "type": "Insect"
+    "name": "Rhyniognatha",
+    "image": "/images/rhyniognatha.png",
+    "description": "A massive insect, one of the largest arthropods on the island. Known for its ability to produce resin, carry heavy loads, and offer versatile utility in combat and transport. Highly valued as a powerful support tame.",
+    "id": "Rhynio_Character_BP_C",
+    "price": "15",
+    "maxLevel": false,
+    "type": "Insect"
   },
   {
     "name": "Hyaenodon",
@@ -241,5 +241,14 @@
     "price": "3",
     "maxLevel": false,
     "type": "Aquatic"
+  },
+  {
+    "name": "Shadowmane",
+    "image": "/images/shadowmane.png",
+    "description": "A powerful chimeric predator from Genesis Part 2. Known for its pack bonuses, teleport pounce, and natural camouflage.",
+    "id": "LionfishLion_Character_BP_C",
+    "price": "10",
+    "maxLevel": false,
+    "type": "Carnivore"
   }
 ]
