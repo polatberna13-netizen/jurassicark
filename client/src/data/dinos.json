@@ -250,5 +250,23 @@
     "price": "10",
     "maxLevel": false,
     "type": "Carnivore"
+  },
+  {
+    "name": "Thorny Dragon",
+    "image": "/images/thorny-dragon.png",
+    "description": "A spiny desert creature from Scorched Earth. Useful as a wood harvester and capable of firing spine projectiles for defense.",
+    "id": "SpineyLizard_Character_BP_C",
+    "price": "0.2",
+    "maxLevel": false,
+    "type": "Herbivore"
+  },
+  {
+    "name": "Pyromane",
+    "image": "/images/pyromane.png",
+    "description": "A fiery feline from the Fantastic Tames DLC—able to transform from a shoulder-pet kitten to a blazing lion, cook meat in its inventory, provide fuel to structures, and grant heat resistance.",
+    "id": "FireLion_Character_BP_C",
+    "price": "15",
+    "maxLevel": false,
+    "type": "Carnivore"
   }
 ]
