@@ -70,5 +70,14 @@
     "price": "2.5",
     "maxLevel": false,
     "type": "Flyer"
+  },
+  {
+    "name": "Pyromane",
+    "image": "/images/pyromane.png",
+    "description": "A fiery feline from the Fantastic Tames DLC—able to transform from a shoulder-pet kitten to a blazing lion, cook meat in its inventory, provide fuel to structures, and grant heat resistance.",
+    "id": "FireLion_Character_BP_C",
+    "price": "15",
+    "maxLevel": false,
+    "type": "Carnivore"
   }
 ]

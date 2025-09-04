@@ -513,12 +513,48 @@
     "type": "Saddle"
   },
   {
-    "name": "Wyvern Milk",
+    "name": "10 x Wyvern Milk",
     "image": "/images/wyvern-milk.png",
     "description": "Essential for raising baby Wyverns. Restores 400 food and grants temporary fire resistance.",
     "id": "WyvernMilk",
     "className": "PrimalItemConsumable_WyvernMilk_C",
     "type": "Consumable",
     "price": "1"
+  },
+  {
+    "name": "Tek Surveillance Console (with 2 Cameras)",
+    "image": "/images/tek-camera-console.png",
+    "description": "Advanced Tek console for monitoring through linked cameras. Requires a Tek Generator powered by Element to operate. Comes with 2 linked cameras.",
+    "id": "TekSurveillanceConsole",
+    "className": "PrimalItemStructure_TekSurveillanceConsole_C",
+    "type": "Structure",
+    "price": "5"
+  },
+  {
+    "name": "5 x Tek Remote Camera",
+    "image": "/images/tek-remote-camera.png",
+    "description": "High-tech remote camera for surveillance. Must be linked to a Tek Surveillance Console and powered by a Tek Generator using Element.",
+    "id": "TekRemoteCamera",
+    "className": "PrimalItemStructure_TekRemoteCamera_C",
+    "type": "Structure",
+    "price": "2"
+  },
+  {
+    "name": "Mastercraft",
+    "image": "/images/skin.png",
+    "description": "A high-quality variant offering superior durability and performance compared to standard versions.",
+    "id": "Mastercraft",
+    "className": "PrimalItemStructure_Mastercraft_C",
+    "type": "Structure",
+    "price": "2"
+  },
+  {
+    "name": "Mastercraft Armor Set",
+    "image": "/images/skin.png",
+    "description": "A high-quality armor set that provides superior protection and durability compared to standard versions.",
+    "id": "MastercraftArmorSet",
+    "className": "PrimalItemStructure_MastercraftArmorSet_C",
+    "type": "Structure",
+    "price": "3"
   }
 ]
