@@ -16,6 +16,7 @@
           </span>
         </button>
       </div>
+
       <section class="mb-4">
         <BundleCard title="Starter Kit" :items="starterKitDinos" />
       </section>
@@ -27,25 +28,24 @@
       <section class="mb-4">
         <BundleCardTribute :items="tributeArtifactItems" />
       </section>
+
       <section id="engrams-section" class="mb-5">
         <NavBar title="Engrams" :categories="engramCategories" :activeCategory="selectedEngramCategory"
           searchPlaceholder="Search engrams" @categorySelected="filterEngramsByCategory" @search="searchEngrams"
           @showAll="resetEngramsFilters" />
-
         <div class="row g-4">
           <div v-if="filteredEngrams.length > 0" class="col-lg-4 col-md-6 mb-4" v-for="engram in filteredEngrams"
             :key="engram.id">
-            <!-- was :engram -->
             <ItemCard :item="formatEngram(engram)" @add-to-cart="onAddToCart" />
           </div>
           <div v-else>No engram found!</div>
         </div>
       </section>
+
       <section id="items-section" class="mb-5">
         <NavBar title="Items" :categories="itemCategories" :activeCategory="selectedItemCategory"
           searchPlaceholder="Search items" @categorySelected="filterItemsByCategory" @search="searchItems"
           @showAll="resetItemsFilters" />
-
         <div class="row g-4">
           <div v-if="filteredItems.length > 0" class="col-lg-4 col-md-6 mb-4" v-for="item in filteredItems"
             :key="item.className">
@@ -54,11 +54,11 @@
           <div v-else>No item found!</div>
         </div>
       </section>
+
       <section id="dinos-section" class="mb-5">
         <NavBar title="Dinosaurs" :categories="dinoCategories" :activeCategory="selectedDinoCategory"
           searchPlaceholder="Search dinosaurs" @categorySelected="filterDinosByCategory" @search="searchDinos"
           @showAll="resetDinosFilters" />
-
         <div class="row g-4">
           <div v-if="filteredDinos.length > 0" class="col-lg-4 col-md-6 mb-4" v-for="dino in filteredDinos"
             :key="dino.id">
@@ -102,17 +102,9 @@ const dinos = ref([])
 const showScrollTop = ref(false)
 const openCart = ref(false)
 
-const engramCategories = [
-  'Armor', 'Structure', 'Saddle', 'Tool', 'Weapon'
-]
-const itemCategories = [
-  'Ammo', 'Armor', 'Artifact', 'Cosmetic', 'Consumable',
-  'Resource', 'Structure', 'Saddle', 'Tool', 'Vehicle', 'Weapon'
-]
-const dinoCategories = [
-  'Aquatic', 'Fantasy Creature', 'Flyer', 'Herbivore',
-  'Insect', 'Land Predator', 'Mammal Predator', 'Wyvern'
-]
+const engramCategories = ['Armor', 'Structure', 'Saddle', 'Tool', 'Weapon']
+const itemCategories = ['Ammo', 'Armor', 'Artifact', 'Cosmetic', 'Consumable', 'Resource', 'Structure', 'Saddle', 'Tool', 'Vehicle', 'Weapon']
+const dinoCategories = ['Aquatic', 'Fantasy Creature', 'Flyer', 'Herbivore', 'Insect', 'Land Predator', 'Mammal Predator', 'Wyvern']
 
 const selectedEngramCategory = ref(null)
 const selectedItemCategory = ref(null)

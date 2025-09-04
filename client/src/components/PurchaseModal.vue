@@ -13,22 +13,48 @@
               <div class="meta">
                 <div class="title-row">
                   <span class="name">{{ line.name }}</span>
-
+                  
                   <label v-if="isDino(line)" class="hl-toggle">
-                    <input type="checkbox" class="form-check-input" :checked="!!highLevel[line.itemId]"
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      :checked="!!highLevel[line.itemId]"
                       @change="setHighLevel(line.itemId, $event.target.checked)"
-                      :aria-label="`High level for ${line.name}`" />
+                    />
                     <span>High level</span>
                   </label>
 
                   <span v-if="isBundleLine(line)" class="badge bundle-badge">Bundle</span>
                 </div>
 
+                <!-- Extra field & blueprint -->
                 <div v-if="needsExtra(line)" class="extras">
-                  <input :id="`extra-${line.itemId}`" class="form-control form-control-sm extras-input"
-                    :placeholder="extraPlaceholder(line)" :value="extraInfo[line.itemId] || ''"
-                    @input="setExtra(line.itemId, $event.target.value)" />
+                  <input
+                    :id="`extra-${line.itemId}`"
+                    class="form-control form-control-sm extras-input"
+                    :placeholder="extraPlaceholder(line)"
+                    :value="extraInfo[line.itemId] || ''"
+                    @input="setExtra(line.itemId, $event.target.value)"
+                    required
+                  />
+
+                  <label v-if="isBlueprintItem(line)" class="bp-toggle">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      :checked="!!blueprint[line.itemId]"
+                      @change="setBlueprint(line.itemId, $event.target.checked)"
+                    />
+                    <span>Blueprint</span>
+                  </label>
                 </div>
+
+                <p
+                  v-if="needsExtra(line) && !(extraInfo[line.itemId] || '').trim()"
+                  class="small text-warning mt-1"
+                >
+                  {{ extraLabel(line) }} is required.
+                </p>
               </div>
             </div>
 
@@ -40,8 +66,15 @@
             <div class="col-qty">
               <div class="input-group quantity-input">
                 <button type="button" class="button" @click="dec(line.itemId)">−</button>
-                <input :value="line.qty" @input="onQtyInput(line.itemId, $event.target.value)" type="number" min="1"
-                  step="1" class="form-control text-center" required />
+                <input
+                  :value="line.qty"
+                  @input="onQtyInput(line.itemId, $event.target.value)"
+                  type="number"
+                  min="1"
+                  step="1"
+                  class="form-control text-center"
+                  required
+                />
                 <button type="button" class="button" @click="inc(line)">+</button>
               </div>
             </div>
@@ -53,6 +86,7 @@
             </div>
           </div>
 
+          <!-- User ID -->
           <div class="d-flex justify-content-end mt-3 pe-3 gap-2 align-items-center">
             <input v-model.trim="userId" type="text" placeholder="Enter your user name" class="form-control"
               style="max-width: 260px" required />
@@ -61,6 +95,7 @@
 
           <hr class="my-3" />
 
+          <!-- Totals -->
           <div class="d-flex justify-content-between align-items-center pe-3">
             <button class="button secondary" @click="clear()">Clear cart</button>
             <div class="text-end">
@@ -71,7 +106,7 @@
                 <div class="small text-muted mt-1">
                   Discount
                   <span class="ms-1 badge bg-success-subtle text-success border border-success"
-                    style="font-size:.75rem">
+                        style="font-size:.75rem">
                     Bundle discount
                   </span>
                 </div>
@@ -79,11 +114,13 @@
               </template>
 
               <div class="fw-bold fs-5 mt-1">Total € {{ adjustedTotal }}</div>
-              <div v-if="belowMin" class="small text-warning mt-1">Minimum order total is €{{ MIN_TOTAL_EUR.toFixed(2)
-                }}.</div>
+              <div v-if="belowMin" class="small text-warning mt-1">
+                Minimum order total is €{{ MIN_TOTAL_EUR.toFixed(2) }}.
+              </div>
             </div>
           </div>
 
+          <!-- Checkout -->
           <div class="d-flex justify-content-end mt-3 pe-3">
             <button class="button" @click="checkout" :disabled="pp.loading || !hasItems || !userId || belowMin">
               {{ pp.loading ? "Opening PayPal..." : "Checkout" }}
@@ -97,6 +134,7 @@
     </div>
   </transition>
 
+  <!-- PayPal overlay -->
   <div v-if="pp.show" class="pp-overlay">
     <div class="pp-card">
       <h4 class="mb-2">Complete your payment</h4>
@@ -137,49 +175,61 @@ const onQtyInput = (itemId, raw) => {
   else if (diff < 0) decrement(itemId, Math.abs(diff))
 }
 
-const DINO_TYPES = ["Aquatic", "Fantasy Creature", "Flyer", "Herbivore", "Insect", "Land Predator", "Mammal Predator", "Wyvern"]
-const HIGH_LEVEL_MULTIPLIER = 2
+/* ---- Special fields ---- */
+const EXTRA_IDS = { ChibiPet: "Chibi", skin: "Skin", Mastercraft: "Item name", MastercraftArmorSet: "Item name" }
+const BLUEPRINT_IDS = new Set(["Mastercraft", "MastercraftArmorSet"])
+const HIGH_LEVEL_MULTIPLIER = 2, BLUEPRINT_MULTIPLIER = 2
+
+const extraInfo = reactive({})
+const blueprint = reactive({})
 const highLevel = reactive({})
+
+const needsExtra = (line) => Object.prototype.hasOwnProperty.call(EXTRA_IDS, line.itemId)
+const extraLabel = (line) => EXTRA_IDS[line.itemId]
+const extraPlaceholder = (line) =>
+  line.itemId === "ChibiPet" ? "Which Chibi?" :
+  line.itemId === "skin" ? "Which Skin?" : "Item name"
+const setExtra = (id, val) => { extraInfo[id] = val }
+
+const isBlueprintItem = (line) => BLUEPRINT_IDS.has(line.itemId)
+const setBlueprint = (id, val) => { blueprint[id] = !!val }
+const isBlueprintApplied = (line) => isBlueprintItem(line) && !!blueprint[line.itemId]
+
+const DINO_TYPES = ["Aquatic","Fantasy Creature","Flyer","Herbivore","Insect","Land Predator","Mammal Predator","Wyvern"]
 const isDino = (line) => DINO_TYPES.includes(line.type)
 const setHighLevel = (id, val) => { highLevel[id] = !!val }
 
-const isBundleLine = (line) => line?.type === "Bundle" || !!line?.bundle || line?.itemId === "starter-kit"
+/* ---- Pricing ---- */
+const unitPrice = (line) => {
+  const base = Number(line.price || 0)
+  let mult = 1
+  if (isDino(line) && highLevel[line.itemId]) mult *= HIGH_LEVEL_MULTIPLIER
+  if (isBlueprintApplied(line)) mult *= BLUEPRINT_MULTIPLIER
+  return base * mult
+}
+const lineTotal = (line) => unitPrice(line) * line.qty
 
+/* ---- Discounts, totals ---- */
 const getDiscountRate = (line) => {
   let rate = Number(line?.bundle?.discountRate)
   if (!Number.isFinite(rate)) rate = Number(line?.discountRate)
   if (!Number.isFinite(rate) && (line?.itemId === "starter-kit" || line?.type === "Bundle")) rate = 0.20
   return (Number.isFinite(rate) && rate > 0 && rate <= 1) ? rate : 0
 }
-
-const round2 = (n) => Math.round(n * 100) / 100
-
-const unitPrice = (line) => {
-  const base = Number(line.price || 0)
-  const mult = isDino(line) && highLevel[line.itemId] ? HIGH_LEVEL_MULTIPLIER : 1
-  return base * mult
-}
-const lineTotal = (line) => unitPrice(line) * line.qty
-
 const lineDiscount = (line) => {
   if (!isBundleLine(line)) return 0
   const rate = getDiscountRate(line)
   if (!rate) return 0
   return unitPrice(line) * line.qty * rate
 }
-
 const subtotal = computed(() => cart.value.reduce((s, line) => s + lineTotal(line), 0))
 const discountAmount = computed(() => cart.value.reduce((s, line) => s + lineDiscount(line), 0))
-const adjustedTotal = computed(() => round2(subtotal.value - discountAmount.value).toFixed(2))
+const adjustedTotal = computed(() => (Math.round((subtotal.value - discountAmount.value) * 100) / 100).toFixed(2))
 const belowMin = computed(() => Number(adjustedTotal.value) + 1e-9 < MIN_TOTAL_EUR)
 
-const EXTRA_IDS = { ChibiPet: "Chibi", skin: "Skin" }
-const extraInfo = reactive({})
-const needsExtra = (line) => Object.prototype.hasOwnProperty.call(EXTRA_IDS, line.itemId)
-const extraLabel = (line) => EXTRA_IDS[line.itemId]
-const extraPlaceholder = (line) => line.itemId === "ChibiPet" ? "Which Chibi?" : "Which Skin?"
-const setExtra = (id, val) => { extraInfo[id] = val }
+const isBundleLine = (line) => line?.type === "Bundle" || !!line?.bundle || line?.itemId === "starter-kit"
 
+/* ---- PayPal integration ---- */
 const pp = reactive({ show: false, loading: false, error: "", success: "" })
 let buttonsInstance = null
 
@@ -202,12 +252,23 @@ async function renderButtons() {
       const items = cart.value.map(line => {
         const isHL = isDino(line) && !!highLevel[line.itemId]
         const extra = needsExtra(line) ? (extraInfo[line.itemId] || "").trim() : ""
+        const isBP = isBlueprintApplied(line)
+
+        const nameWithFlags = line.name + (isBP ? " (Blueprint)" : "")
+
+        const parts = []
+        if (isHL) parts.push("[High Level]")
+        if (extra) parts.push(`[${extraLabel(line)}: ${extra}]`)
+        if (isBP) parts.push("[Blueprint]")
+
+        const description = `${line.type} #${line.itemId} ${parts.join(" ")}`.trim()
+
         return {
-          name: line.name,
+          name: nameWithFlags,
           sku: String(line.itemId),
           quantity: String(line.qty),
           unit_amount: { currency_code: "EUR", value: unitPrice(line).toFixed(2) },
-          description: `${line.type} #${line.itemId}${isHL ? " [High Level]" : ""}${extra ? ` [${extraLabel(line)}: ${extra}]` : ""}`
+          description
         }
       })
 
@@ -251,7 +312,7 @@ async function renderButtons() {
     },
     onError: (err) => {
       pp.show = false
-      pp.error = err?.message || "Something went wrong. Please try again. If you experience any issues, please contact us via Discord."
+      pp.error = err?.message || "Something went wrong. Please try again."
       setTimeout(() => { if (pp.error) pp.error = "" }, 5000)
     },
     style: { shape: "rect", label: "pay", layout: "vertical" }
@@ -265,6 +326,14 @@ async function checkout() {
     pp.error = ""; pp.success = ""; pp.loading = true
     if (!hasItems.value) throw new Error("Your cart is empty")
     if (belowMin.value) throw new Error(`Minimum order total is €${MIN_TOTAL_EUR.toFixed(2)}`)
+
+    // validate required Item name
+    const missingExtras = cart.value.filter(l => needsExtra(l) && !(extraInfo[l.itemId] || "").trim())
+    if (missingExtras.length) {
+      const names = missingExtras.map((l) => l.name).join(", ")
+      throw new Error(`Please provide Item name for: ${names}`)
+    }
+
     await loadSdkIfNeeded()
     pp.show = true
     await nextTick()
@@ -384,22 +453,6 @@ function cancelPayPal() {
   line-height: 1.2
 }
 
-.muted {
-  color: #9ca3af
-}
-
-.small-line {
-  font-size: .85rem;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  gap: 8px
-}
-
-.dot {
-  opacity: .7
-}
-
 .bundle-badge {
   background: rgba(0, 200, 120, .15);
   color: #9ae6b4;
@@ -416,12 +469,6 @@ function cancelPayPal() {
   gap: 8px;
   align-items: center;
   max-width: 420px
-}
-
-.extras-label {
-  font-size: .8rem;
-  color: #9ca3af;
-  white-space: nowrap
 }
 
 .extras-input {
@@ -464,6 +511,20 @@ function cancelPayPal() {
 }
 
 .hl-toggle .form-check-input {
+  width: 1rem;
+  height: 1rem
+}
+
+.bp-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: .9rem;
+  opacity: .95;
+}
+
+.bp-toggle .form-check-input {
   width: 1rem;
   height: 1rem
 }
