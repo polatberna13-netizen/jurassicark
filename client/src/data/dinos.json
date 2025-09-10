@@ -259,5 +259,68 @@
     "price": "0.2",
     "maxLevel": false,
     "type": "Herbivore"
+  },
+  {
+    "name": "Magmasaur",
+    "image": "/images/magmasaur.png",
+    "description": "A massive volcanic creature from Genesis. It thrives in extreme heat, can smelt metal in its inventory, and unleashes devastating magma projectiles for both offense and defense.",
+    "id": "Cherufe_Character_BP_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Carnivore"
+  },
+  {
+    "name": "Maewing",
+    "image": "/images/maewing.png",
+    "description": "A hybrid creature from Genesis Part 2. Known for its ability to glide long distances, nurse and feed baby creatures, and quickly traverse across diverse terrains with ease.",
+    "id": "MilkGlider_Character_BP_C",
+    "price": "3",
+    "maxLevel": false,
+    "type": "Omnivore"
+  },
+  {
+    "name": "Bloodstalker",
+    "image": "/images/bloodstalker.png",
+    "description": "A terrifying arachnid-like creature from Genesis. It uses webbing to grapple and swing across terrain, latch onto prey, and drain blood to sustain itself.",
+    "id": "BogSpider_Character_BP_C",
+    "price": "10",
+    "maxLevel": false,
+    "type": "Carnivore"
+  },
+  {
+    "name": "MEK",
+    "image": "/images/mek.png",
+    "description": "A massive combat mech designed for war. Highly customizable with modules for ranged or melee combat, it excels in both defense and offense against the toughest threats (Max level is 35).",
+    "id": "Mek_Character_BP_C",
+    "price": "20",
+    "maxLevel": false,
+    "type": "Vehicle"
+  },
+  {
+    "name": "MEK with Deployable Shield Module",
+    "image": "/images/mek.png",
+    "description": "A heavily armored MEK equipped with the Deployable Shield Module. It not only delivers strong offensive power but can also deploy an energy shield to protect allies and structures in combat (Max level is 35).",
+    "id": "Mek_With_Shield",
+    "price": "25",
+    "maxLevel": false,
+    "type": "Vehicle"
+  },
+  {
+    "name": "MEK with Rocket Launcher Module",
+    "image": "/images/mek.png",
+    "description": "A MEK fitted with the Rocket Launcher Module, giving it devastating ranged firepower. It excels at targeting enemies and structures with homing rockets for maximum destruction (Max level is 35).",
+    "id": "Mek_With_Rockets",
+    "price": "25",
+    "maxLevel": false,
+    "type": "Vehicle"
+  },
+  {
+    "name": "MEK with Siege Cannon Module",
+    "image": "/images/mek.png",
+    "description": "A MEK armed with the Siege Cannon Module. Designed for heavy warfare, it fires explosive shells that demolish fortifications and deal massive damage to large creatures (Max level is 35).",
+    "id": "Mek_With_Cannon",
+    "price": "25",
+    "maxLevel": false,
+    "type": "Vehicle"
   }
 ]

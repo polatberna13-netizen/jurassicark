@@ -556,5 +556,56 @@
     "className": "PrimalItemStructure_MastercraftArmorSet_C",
     "type": "Structure",
     "price": "3"
+  },
+  {
+    "name": "Ammo Box",
+    "image": "/images/ammo-box.png",
+    "description": "A storage container designed for holding and distributing various types of ammunition. Keeps ammo organized and readily available for defense or combat situations.",
+    "id": "AmmoBox",
+    "className": "PrimalItemStructure_AmmoBox_C",
+    "type": "Structure",
+    "price": "1"
+  },
+  {
+    "name": "Tek Jump Pad x 5",
+    "image": "/images/tek-jump-pad.png",
+    "description": "An advanced Tek structure that launches survivors and creatures into the air. Its trajectory and power can be adjusted for versatile traversal across the battlefield.",
+    "id": "TekJumpPad",
+    "className": "PrimalItemStructure_TekJumpPad_C",
+    "type": "Structure",
+    "price": "3"
+  },
+  {
+    "name": "Tek ATV",
+    "image": "/images/tek-atv.png",
+    "description": "A futuristic all-terrain vehicle powered by Tek technology. Extremely fast and versatile, though primarily used for testing or special events.",
+    "id": "TekATV",
+    "className": "PrimalItemVehicle_TekATV_C",
+    "type": "Vehicle",
+    "price": "7.5"
+  },
+  {
+    "name": "Deployable Shield Modul (MEK MODULE)",
+    "image": "/images/M.D.S.M.png",
+    "description": "An attachment for the MEK that deploys a protective energy shield. Useful for defending allies and structures against incoming damage.",
+    "id": "MekShield",
+    "price": "6",
+    "type": "Module"
+  },
+  {
+    "name": "Rocket Launcher Module (MEK MODULE)",
+    "image": "/images/M.R.L.M.png",
+    "description": "An offensive module for the MEK that fires homing rockets at enemies and structures, providing powerful ranged attack capabilities.",
+    "id": "MekRocketPod",
+    "price": "6",
+    "type": "Module"
+  },
+  {
+    "name": "Siege Cannon Module (MEK MODULE)",
+    "image": "/images/M.S.C.M.png",
+    "description": "A heavy artillery module for the MEK. Capable of firing explosive cannon shells that deal devastating damage to large targets and fortifications.",
+    "id": "MekSiegeCannon",
+    "price": "6",
+    "type": "Module"
   }
 ]
