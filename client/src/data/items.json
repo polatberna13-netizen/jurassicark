@@ -484,7 +484,7 @@
     "className": "PrimalItemArmor_ManagarmrSaddle_C",
     "type": "Saddle",
     "price": "0.25"
-  }, 
+  },
   {
     "name": "Rock Golem Saddle",
     "image": "/images/rock-golem-saddle.png",
@@ -567,7 +567,7 @@
     "price": "1"
   },
   {
-    "name": "Tek Jump Pad x 5",
+    "name": "5 x Tek Jump Pad",
     "image": "/images/tek-jump-pad.png",
     "description": "An advanced Tek structure that launches survivors and creatures into the air. Its trajectory and power can be adjusted for versatile traversal across the battlefield.",
     "id": "TekJumpPad",
@@ -585,7 +585,7 @@
     "price": "7.5"
   },
   {
-    "name": "Deployable Shield Modul (MEK MODULE)",
+    "name": "Deployable Shield Module (MEK MODULE)",
     "image": "/images/M.D.S.M.png",
     "description": "An attachment for the MEK that deploys a protective energy shield. Useful for defending allies and structures against incoming damage.",
     "id": "MekShield",
@@ -607,5 +607,45 @@
     "id": "MekSiegeCannon",
     "price": "6",
     "type": "Module"
+  },
+  {
+    "name": "Stinger",
+    "image": "/images/stinger.png",
+    "description": "A fast and agile combat vehicle designed for hit-and-run tactics and rapid maneuvering.",
+    "id": "Stinger",
+    "price": "2",
+    "type": "Vehicle"
+  },
+  {
+    "name": "Electronic Binoculars",
+    "image": "/images/electronic-binoculars.png",
+    "description": "Advanced binoculars with electronic zoom and target highlighting capabilities.",
+    "id": "ElectronicBinoculars",
+    "price": "0.5",
+    "type": "Equipment"
+  },
+  {
+    "name": "Tek Hoversail",
+    "image": "/images/tek-hoversail.png",
+    "description": "A futuristic hoversail that allows fast gliding and aerial tricks across large distances.",
+    "id": "TekHoversail",
+    "price": "5",
+    "type": "Vehicle"
+  },
+  {
+    "name": "Glider Suit",
+    "image": "/images/glider-suit.png",
+    "description": "A lightweight suit that enables controlled gliding through the air.",
+    "id": "GliderSuit",
+    "price": "0.2",
+    "type": "Armor"
+  },
+  {
+    "name": "Scout Remote",
+    "image": "/images/scout_remote.png",
+    "description": "A handheld device used to control and interface with a Scout Drone remotely.",
+    "id": "ScoutRemote",
+    "price": "0.1",
+    "type": "Equipment"
   }
 ]
